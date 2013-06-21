@@ -7,7 +7,11 @@ module Formulaic
     end
 
     def to_str
-      translate || human_attribute_name || attribute.to_s
+      if attribute.is_a?(String)
+        attribute
+      else
+        translate || human_attribute_name || attribute.to_s
+      end
     end
     alias_method :to_s, :to_str
 

@@ -16,6 +16,10 @@ describe Formulaic::Label do
     expect(label(:user, :name)).to eq('Translated')
   end
 
+  it 'should leave cases alone' do
+    expect(label(:user, 'Work URL')).to eq 'Work URL'
+  end
+
   def label(model_name, attribute, action = :create)
     Formulaic::Label.new(model_name, attribute, action).to_str
   end
