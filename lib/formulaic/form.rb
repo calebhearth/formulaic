@@ -31,7 +31,15 @@ module Formulaic
     end
 
     def build_input(model_name, field, value)
-      ATTRIBUTE_INPUT_MAP[value.class].new(model_name, field, value)
+      input_class_for(value).new(model_name, field, value)
     end
+
+    def input_class_for(value)
+      ATTRIBUTE_INPUT_MAP.fetch(value.class) do
+        raise InvalidAttributeTypeError.new("Formulaic does not know how to fill in a #{value.class} value")
+      end
+    end
+
+    class InvalidAttributeTypeError < StandardError; end
   end
 end
