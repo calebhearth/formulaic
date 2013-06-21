@@ -41,4 +41,13 @@ describe 'Fill in user form' do
 
     expect(input(:user, :terms_of_service)).to be_checked
   end
+
+  it 'selects a string if there is no input' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, awesome: 'Yes')
+
+    form.fill
+
+    expect(page).to have_select('user_awesome', selected: 'Yes')
+  end
 end

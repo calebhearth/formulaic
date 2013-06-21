@@ -27,6 +27,7 @@ module SpecHelper
               password: Password
               date_of_birth: Date of birth
               terms_of_service: I agree to the Terms of Service
+              awesome: Are you awesome?
     TRANSLATIONS
   end
 end

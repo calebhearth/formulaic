@@ -3,7 +3,15 @@
   <div class="input string required user_name"><label class="string required" for="user_name"><abbr title="required">*</abbr> Display name</label><input class="string required" id="user_name" maxlength="255" name="user[name]" size="50" type="text"></div>
   <div class="input email required user_email"><label class="email required" for="user_email"><abbr title="required">*</abbr> Email</label><input class="string email required" id="user_email" maxlength="255" name="user[email]" size="50" type="email"></div>
   <div class="input password optional user_password"><label class="password optional" for="user_password">Password</label><input class="password optional" id="user_password" name="user[password]" size="50" type="password"></div>
-  <div class="input date required user_date_of_birth">
+  <div class="input select required user_awesome">
+    <label class="select required" for="user_awesome"><abbr title="required">*</abbr> Are you awesome?</label>
+    <select class="select required" id="user_awesome" name="user[awesome]">
+      <option value=""></option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+    <div class="input date required user_date_of_birth">
     <label class="date required" for="user_date_of_birth_1i"><abbr title="required">*</abbr> Date of birth</label>
     <select class="date required" id="user_date_of_birth_1i" name="user[date_of_birth(1i)]">
       <option value="2001">2001</option>
