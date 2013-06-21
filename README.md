@@ -92,24 +92,32 @@ end
 
 ## Known Limitations
 
-Formulaic currently supports the following mappings from the `#class` of the
-attribute values to Capybara method calls:
+* Formulaic currently supports the following mappings from the `#class` of the
+  attribute values to Capybara method calls:
 
-| Classes                               | Formulaic’s action            |
-| --------------------------------------|-------------------------------|
-| `String`                              | `fill_in`                     |
-| `Date`, `ActiveSupport::TimeWithZone` | `select` year, month, and day |
-| `TrueClass`                           | `check`                       |
-| `FalseClass`                          | `uncheck`                     |
-| `Array`                               | `check` each array member, which should all be strings |
+  | Classes                               | Formulaic’s action            |
+  | --------------------------------------|-------------------------------|
+  | `String`                              | `fill_in`                     |
+  | `Date`, `ActiveSupport::TimeWithZone` | `select` year, month, and day |
+  | `TrueClass`                           | `check`                       |
+  | `FalseClass`                          | `uncheck`                     |
+  | `Array`                               | `check` each array member, which should all be strings |
 
-Formulaic is currently tied to `simple_form` translations and field structure.
-We would be happy to work with you to add support for other form builders.
+* Formulaic is currently tied to `simple_form` translations and field structure.
+  If you pass a string for the attribute, we’ll try to fill the input that
+  relates to that label. We would be happy to work with you to add support for
+  other form builders.
+* Formulaic currently does not support forms with duplicate labels, as it is
+  designed to be as similar as possible to a user completing a form—it looks at
+  the labels to determine where to fill what data.
+* Formulaic can’t figure out how to fill fields with HTML labels:
+  `page.fill_in('<strong>Text</strong> here', with: 'something')` doesn’t work
+  with Capybara. The usual workaround is to pass a CSS selector.
 
 ## About
 
 Formulaic is maintained by [Caleb Thompson](http://github.com/calebthompson).
 It was written by [thoughtbot](http://thoughtbot.com) with the help of our
-[contributors](http://github.com/calebthompson/formulaic/contributors).
+[contributors](http://github.com/thoughtbot/formulaic/contributors).
 
 [![Ralph](http://thoughtbot.com/assets/thoughtbot-logo.png)](http://thoughtbot.com)
