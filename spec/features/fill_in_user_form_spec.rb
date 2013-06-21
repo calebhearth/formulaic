@@ -1,0 +1,44 @@
+require 'spec_helper'
+
+describe 'Fill in user form' do
+
+  before(:all) { load_translations }
+
+  it 'finds and fills text fields' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, name: 'George')
+
+    form.fill
+
+    expect(input(:user, :name).value).to eq 'George'
+  end
+
+  it 'finds and fills a password field' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, password: 'supersecr3t')
+
+    form.fill
+
+    expect(input(:user, :password).value).to eq 'supersecr3t'
+  end
+
+  it 'finds and fills a date field' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, date_of_birth: Date.new(1980, 1, 2))
+
+    form.fill
+
+    expect(page.find('#user_date_of_birth_1i').value).to eq('1980')
+    expect(page.find('#user_date_of_birth_2i').value).to eq('1')
+    expect(page.find('#user_date_of_birth_3i').value).to eq('2')
+  end
+
+  it 'finds and checks a boolean field' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, terms_of_service: true)
+
+    form.fill
+
+    expect(input(:user, :terms_of_service)).to be_checked
+  end
+end

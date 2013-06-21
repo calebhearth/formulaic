@@ -1,0 +1,5 @@
+require 'formulaic/inputs/input'
+require 'formulaic/inputs/array_input'
+require 'formulaic/inputs/boolean_input'
+require 'formulaic/inputs/date_input'
+require 'formulaic/inputs/string_input'

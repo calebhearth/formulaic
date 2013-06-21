@@ -1,3 +1,3 @@
-module Formualic
+module Formulaic
   VERSION = "0.0.1"
 end
