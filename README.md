@@ -31,6 +31,10 @@ fill_form(model_name, attributes)
 `model_name` as a symbol and `attributes` as a hash of
 `column name => database value` or `label string => database value`.
 
+If an `attributes` key is a `String`, it will be used as the literal label.
+For `Symbol` we will attempt to translate, fall back to `human_attribute_name`
+if available, then call `to_s`.
+
 ### `input`
 
 ```ruby
