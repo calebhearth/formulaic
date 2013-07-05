@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe Formulaic::Label do
   it 'returns the string if there are no translations and it can not human_attribute_name the class' do
