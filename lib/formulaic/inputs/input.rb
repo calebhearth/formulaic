@@ -14,8 +14,8 @@ module Formulaic
 
       private
 
-      def input(model_class, field, action = :create)
-        Label.new(model_class, field, action).to_str
+      def input(model_name, field, action = :create)
+        Label.new(model_name, field, action).to_str
       end
 
       attr_accessor :model_name, :field, :value
