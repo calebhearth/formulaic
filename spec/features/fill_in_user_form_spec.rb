@@ -22,6 +22,15 @@ describe 'Fill in user form' do
     expect(input(:user, :password).value).to eq 'supersecr3t'
   end
 
+  it 'finds and fills a textarea' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, bio: 'blah blah blah')
+
+    form.fill
+
+    expect(input(:user, :bio).value).to eq 'blah blah blah'
+  end
+
   it 'finds and fills a date field' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, date_of_birth: Date.new(1980, 1, 2))

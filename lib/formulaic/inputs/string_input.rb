@@ -2,8 +2,10 @@ module Formulaic
   module Inputs
     class StringInput < Input
       def fill
-        if page.has_field?(input_text, type: 'text')
+        if %w(text email password textarea).any? { |type| page.has_field?(input_text, type: type) }
           fill_in(input_text, with: value)
+        elsif page.has_field?(input_text, type: 'radio')
+          choose(value)
         else
           select(value, from: input_text)
         end
