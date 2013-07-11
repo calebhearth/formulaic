@@ -9,7 +9,7 @@ procedurally calling Capybara’s DSL methods.
 
 ```ruby
 feature 'New user registration' do
-  scenario 'succesfull sign up' do
+  scenario 'successfull sign up' do
     visit sign_in_path
 
     fill_form(:user, { name: 'Caleb', email: 'caleb@thoughtbot.com', 'Terms of Service': true })
@@ -82,7 +82,7 @@ end
 fill_form(:user, attributes_for(:user))
 ```
 
-You may have attributes included in your `User` factory that don’t pretain to
+You may have attributes included in your `User` factory that don’t pertain to
 sign up:
 
 ```ruby
