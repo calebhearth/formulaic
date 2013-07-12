@@ -68,4 +68,13 @@ describe 'Fill in user form' do
 
     expect(page).to have_select('user_awesome', selected: 'Yes')
   end
+
+  it 'fills a field on a nested form' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, profile: { location: 'In the house' })
+
+    form.fill
+
+    expect(input(:user_profile_attributes, :location).value).to eq 'In the house'
+  end
 end
