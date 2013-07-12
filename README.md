@@ -35,6 +35,20 @@ If an `attributes` key is a `String`, it will be used as the literal label.
 For `Symbol` we will attempt to translate, fall back to `human_attribute_name`
 if available, then call `to_s`.
 
+#### Nested fields
+
+```ruby
+fill_form(:user, name: 'Caleb', profile: { location: 'Boston' })
+```
+
+`fill_form` will recurse into nested hashes of `attributes` and build inputs, so
+the above code is functionally equivalent to:
+
+```ruby
+fill_form(:user, name: 'Caleb')
+fill_form(:profile, location: 'Boston')
+```
+
 ### `input`
 
 ```ruby
