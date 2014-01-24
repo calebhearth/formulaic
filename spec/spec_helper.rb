@@ -24,6 +24,8 @@ module SpecHelper
             user:
               name: Display name
               email: Email
+              phone: Phone Number
+              url: Website
               password: Password
               date_of_birth: Date of birth
               terms_of_service: I agree to the Terms of Service
