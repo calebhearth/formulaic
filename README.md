@@ -108,12 +108,12 @@ around `I18n.t`.
 * Formulaic currently supports the following mappings from the `#class` of the
   attribute values to Capybara method calls:
 
-  | Classes                               | Formulaic’s action            |
-  | --------------------------------------|-------------------------------|
-  | `String`                              | `fill_in`                     |
-  | `Date`, `ActiveSupport::TimeWithZone` | `select` year, month, and day |
-  | `TrueClass`                           | `check`                       |
-  | `FalseClass`                          | `uncheck`                     |
+  | Classes                               | Formulaic’s action               |
+  | --------------------------------------|----------------------------------|
+  | `String`                              | `fill_in`, `choose`, or `select` |
+  | `Date`, `ActiveSupport::TimeWithZone` | `select` year, month, and day    |
+  | `TrueClass`                           | `check`                          |
+  | `FalseClass`                          | `uncheck`                        |
   | `Array`                               | `check` each array member, which should all be strings |
 
 * Formulaic is currently tied to `simple_form` translations and field structure.
