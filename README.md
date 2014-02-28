@@ -94,6 +94,15 @@ def sign_up_attributes
 end
 ```
 
+## Assumptions
+
+Formulaic relies pretty heavily on the assumption that your application is using translations for SimpleForm and input helpers, using the `simple_form.labels.<model>.<attribute>` and `helpers.submit.<model>.<action>` conventions.
+
+You can still use Formulaic by using strings as keys instead of symbols, which
+it knows to pass directly to `fill_in` rather than trying to find a translation.
+You'll need to find submit buttons yourself since `submit` is a thin wrapper
+around `I18n.t`.
+
 ## Known Limitations
 
 * Formulaic currently supports the following mappings from the `#class` of the
