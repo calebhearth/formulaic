@@ -12,13 +12,21 @@ module Formulaic
     }.freeze
 
     def initialize(model_name, attributes)
-      @inputs = build_inputs(model_name, attributes)
+      @model_name = model_name
+      @inputs = build_inputs(@model_name, attributes)
       @session = session
     end
 
     def fill
       @inputs.each { |input| input.fill }
     end
+
+    def matches?(attributes = {})
+      attributes.all? do |field, value|
+        build_input(@model_name, field, value).current_value == value
+      end
+    end
+    alias :match? :matches?
 
     private
 

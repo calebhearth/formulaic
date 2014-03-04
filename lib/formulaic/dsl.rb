@@ -4,6 +4,10 @@ module Formulaic
       Form.new(model_name, attributes).fill
     end
 
+    def match_form(model_name, attributes)
+      Form.new(model_name, attributes).matches?(attributes)
+    end
+
     def input(model_name, field, action = :create)
       Label.new(model_name, field, action).to_str
     end

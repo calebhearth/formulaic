@@ -33,6 +33,10 @@ module SpecHelper
               bio: Biography
     TRANSLATIONS
   end
+
+  def expects(*args)
+    expect(*args)
+  end
 end
 
 RSpec.configure do |c|
