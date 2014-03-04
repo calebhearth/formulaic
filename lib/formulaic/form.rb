@@ -3,12 +3,12 @@ require 'active_support/time_with_zone'
 module Formulaic
   class Form
     ATTRIBUTE_INPUT_MAP = {
-      ActiveSupport::TimeWithZone => Formulaic::Inputs::DateInput,
-      Date => Formulaic::Inputs::DateInput,
-      Array => Formulaic::Inputs::ArrayInput,
-      String => Formulaic::Inputs::StringInput,
-      TrueClass => Formulaic::Inputs::BooleanInput,
-      FalseClass => Formulaic::Inputs::BooleanInput,
+      "TimeWithZone" => Formulaic::Inputs::DateInput,
+      "Date" => Formulaic::Inputs::DateInput,
+      "Array" => Formulaic::Inputs::ArrayInput,
+      "String" => Formulaic::Inputs::StringInput,
+      "TrueClass" => Formulaic::Inputs::BooleanInput,
+      "FalseClass" => Formulaic::Inputs::BooleanInput,
     }.freeze
 
     def initialize(model_name, attributes)
@@ -35,7 +35,7 @@ module Formulaic
     end
 
     def input_class_for(value)
-      ATTRIBUTE_INPUT_MAP.fetch(value.class) do
+      ATTRIBUTE_INPUT_MAP.fetch(value.class.name.demodulize) do
         raise InvalidAttributeTypeError.new("Formulaic does not know how to fill in a #{value.class} value")
       end
     end
