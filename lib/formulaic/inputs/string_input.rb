@@ -8,7 +8,7 @@ module Formulaic
       end
 
       def input_text
-        @input_text ||= input(model_name, field)
+        input_element.to_str
       end
 
       def has_option_in_select?(option, select)
@@ -19,8 +19,12 @@ module Formulaic
 
       private
 
+      def input_element
+        @input_element ||= element(model_name, field)
+      end
+
       def fill_with(method = :label)
-        lookup = input_text.__send__(method)
+        lookup = input_element.__send__(method)
         if page.has_selector?(:fillable_field, lookup)
           fill_in(lookup, with: value)
         elsif page.has_selector?(:radio_button, lookup)

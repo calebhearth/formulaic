@@ -8,7 +8,7 @@ describe Formulaic::Dsl do
   it 'responds to fill_form' do
     expect(object_with_dsl).to respond_to(:fill_form)
   end
-  
+
   it 'finds a submit label' do
     I18n.backend.store_translations(:en, { helpers: { submit: { user: { create: 'Create user' } } } })
 

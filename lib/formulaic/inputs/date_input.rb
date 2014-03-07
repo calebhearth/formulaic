@@ -10,7 +10,7 @@ module Formulaic
       private
 
       def date_input
-        input(model_name, field)
+        element(model_name, field)
       end
 
       def select_date(date, options)

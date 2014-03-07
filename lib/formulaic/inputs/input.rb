@@ -15,6 +15,10 @@ module Formulaic
       private
 
       def input(model_name, field, action = :create)
+        element(model_name, field, action).to_str
+      end
+
+      def element(model_name, field, action = :create)
         Label.new(model_name, field, action)
       end
 

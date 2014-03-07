@@ -18,7 +18,7 @@ module Formulaic
       end
 
       def checkbox
-        input(model_name, field)
+        element(model_name, field)
       end
     end
   end
