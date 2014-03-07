@@ -76,6 +76,16 @@ RSpec.configure do |config|
 end
 ```
 
+### Integration with Minitest/Test::Unit:
+
+```ruby
+# test/test_helper.rb
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+  include Formulaic::Dsl
+end
+```
+
 ### Integration with [FactoryGirl](https://github.com/thoughtbot/factory_girl)
 
 ```ruby
