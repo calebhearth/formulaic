@@ -76,10 +76,11 @@ RSpec.configure do |config|
 end
 ```
 
-### Integration with Minitest/Test::Unit:
+### Integration with Minitest or Test::Unit:
 
 ```ruby
 # test/test_helper.rb
+
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Formulaic::Dsl
