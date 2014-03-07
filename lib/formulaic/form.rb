@@ -21,13 +21,6 @@ module Formulaic
       @inputs.each { |input| input.fill }
     end
 
-    def matches?(attributes = {})
-      attributes.all? do |field, value|
-        build_input(@model_name, field, value).current_value == value
-      end
-    end
-    alias :match? :matches?
-
     private
 
     attr_reader :session, :model_name, :inputs
