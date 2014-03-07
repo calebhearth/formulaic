@@ -35,6 +35,9 @@ If an `attributes` key is a `String`, it will be used as the literal label.
 For `Symbol` we will attempt to translate, fall back to `human_attribute_name`
 if available, then call `to_s`.
 
+Finally, if the `I18n` label does not match any input, `fill_form` will attempt
+to find the input via its `simple_form` DOM id (`"#{model_name}_#{attribute}"`)
+
 ### `input`
 
 ```ruby

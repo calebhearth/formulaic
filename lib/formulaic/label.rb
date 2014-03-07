@@ -14,6 +14,11 @@ module Formulaic
       end
     end
     alias_method :to_s, :to_str
+    alias_method :label, :to_str
+
+    def id
+      [model_name, attribute].join("_")
+    end
 
     private
 

@@ -1,89 +1,86 @@
 require 'spec_helper'
 
-describe 'Fill in user form' do
+%w[user_form user_form_only_ids].each do |fixture_url|
+  describe "Fill in #{fixture_url.humanize}" do
 
-  before(:all) { load_translations }
+    before(:all) { load_translations }
 
-  it 'finds and fills text fields' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, name: 'George')
+    before do
+      visit fixture_url
+    end
 
-    form.fill
+    it 'finds and fills text fields' do
+      form = Formulaic::Form.new(:user, name: 'George')
 
-    expect(input(:user, :name).value).to eq 'George'
-  end
+      form.fill
 
-  it 'finds and fills a password field' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, password: 'supersecr3t')
+      expect(input(:user, :name).value).to eq 'George'
+    end
 
-    form.fill
+    it 'finds and fills a password field' do
+      form = Formulaic::Form.new(:user, password: 'supersecr3t')
 
-    expect(input(:user, :password).value).to eq 'supersecr3t'
-  end
+      form.fill
 
-  it 'finds and fills a email field' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, email: 'caleb@example.com')
+      expect(input(:user, :password).value).to eq 'supersecr3t'
+    end
 
-    form.fill
+    it 'finds and fills a email field' do
+      form = Formulaic::Form.new(:user, email: 'caleb@example.com')
 
-    expect(input(:user, :email).value).to eq 'caleb@example.com'
-  end
+      form.fill
 
-  it 'finds and fills a tel field' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, phone: '123-555-1234')
+      expect(input(:user, :email).value).to eq 'caleb@example.com'
+    end
 
-    form.fill
+    it 'finds and fills a tel field' do
+      form = Formulaic::Form.new(:user, phone: '123-555-1234')
 
-    expect(input(:user, :phone).value).to eq '123-555-1234'
-  end
+      form.fill
 
-  it 'finds and fills a url field' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, url: 'https://github.com')
+      expect(input(:user, :phone).value).to eq '123-555-1234'
+    end
 
-    form.fill
+    it 'finds and fills a url field' do
+      form = Formulaic::Form.new(:user, url: 'https://github.com')
 
-    expect(input(:user, :url).value).to eq 'https://github.com'
-  end
+      form.fill
 
-  it 'finds and fills a textarea' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, bio: 'blah blah blah')
+      expect(input(:user, :url).value).to eq 'https://github.com'
+    end
 
-    form.fill
+    it 'finds and fills a textarea' do
+      form = Formulaic::Form.new(:user, bio: 'blah blah blah')
 
-    expect(input(:user, :bio).value).to eq 'blah blah blah'
-  end
+      form.fill
 
-  it 'finds and fills a date field' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, date_of_birth: Date.new(1980, 1, 2))
+      expect(input(:user, :bio).value).to eq 'blah blah blah'
+    end
 
-    form.fill
+    it 'finds and fills a date field' do
+      form = Formulaic::Form.new(:user, date_of_birth: Date.new(1980, 1, 2))
 
-    expect(page.find('#user_date_of_birth_1i').value).to eq('1980')
-    expect(page.find('#user_date_of_birth_2i').value).to eq('1')
-    expect(page.find('#user_date_of_birth_3i').value).to eq('2')
-  end
+      form.fill
 
-  it 'finds and checks a boolean field' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, terms_of_service: true)
+      expect(page.find('#user_date_of_birth_1i').value).to eq('1980')
+      expect(page.find('#user_date_of_birth_2i').value).to eq('1')
+      expect(page.find('#user_date_of_birth_3i').value).to eq('2')
+    end
 
-    form.fill
+    it 'finds and checks a boolean field' do
+      form = Formulaic::Form.new(:user, terms_of_service: true)
 
-    expect(input(:user, :terms_of_service)).to be_checked
-  end
+      form.fill
 
-  it 'selects a string if there is no input' do
-    visit 'user_form'
-    form = Formulaic::Form.new(:user, awesome: 'Yes')
+      expect(input(:user, :terms_of_service)).to be_checked
+    end
 
-    form.fill
+    it 'selects a string if there is no input' do
+      form = Formulaic::Form.new(:user, awesome: 'Yes')
 
-    expect(page).to have_select('user_awesome', selected: 'Yes')
+      form.fill
+
+      expect(page).to have_select('user_awesome', selected: 'Yes')
+    end
   end
 end

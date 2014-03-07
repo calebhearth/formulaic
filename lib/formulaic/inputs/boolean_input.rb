@@ -2,11 +2,23 @@ module Formulaic
   module Inputs
     class BooleanInput < Input
       def fill
+        fill_with(:label)
+      rescue
+        fill_with(:id)
+      end
+
+      private
+
+      def fill_with(method = :label)
         if value
-          check(input(model_name, field))
+          check(checkbox.__send__(method))
         else
-          uncheck(input(model_name, field))
+          uncheck(checkbox.__send__(method))
         end
+      end
+
+      def checkbox
+        element(model_name, field)
       end
     end
   end
