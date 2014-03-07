@@ -12,7 +12,7 @@ feature 'New user registration' do
   scenario 'successfull sign up' do
     visit sign_in_path
 
-    fill_form(:user, { name: 'Caleb', email: 'caleb@thoughtbot.com', 'Terms of Service': true })
+    fill_form(:user, name: 'Caleb', email: 'caleb@thoughtbot.com', 'Terms of Service' => true)
     click_on submit(:user)
 
     expect(page).to have_content t('user.create.success')
