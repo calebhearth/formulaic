@@ -18,7 +18,3 @@ module Formulaic
 
   Formulaic::Dsl.send(:include, Formulaic::FactoryGirl)
 end
-
-#fill_with_factory(:user, :name, :age, factory_arguments: [:authenticated, :super_old, name: 'george'])
-#=>
-#Formulaic::Dsl.fill_form(FactoryGirl.attributes_for(:user, :authenticated, :super_old, name: 'george').slice(:name, :age))
