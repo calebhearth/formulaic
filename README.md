@@ -93,19 +93,35 @@ end
 ### Integration with [FactoryGirl](https://github.com/thoughtbot/factory_girl)
 
 ```ruby
-fill_form(:user, attributes_for(:user))
+require 'formulaic/factory_girl'
+
+fill_with_factory(:user, attributes_for(:user))
 ```
 
 You may have attributes included in your `User` factory that don’t pertain to
 sign up:
 
 ```ruby
-fill_form(:user, attributes_for(:user).slice(sign_up_attributes))
+require 'formulaic/factory_girl'
 
-# ...
-def sign_up_attributes
-  [:name, :email, :terms_of_service]
-end
+fill_with_factory(:user, :name, :email, :terms_of_service)
+```
+
+If you need to pass specific arguments to the factory, such as [traits] or to
+override values, pass them in the `factory_arguments` parameter.
+
+[traits]: https://github.com/thoughtbot/factory\_girl/blob/master/GETTING\_STARTED.md#traits
+
+```ruby
+require 'formulaic/factory_girl'
+
+fill_with_factory(:user, factory_arguments: [:registered, name: 'Frank'])
+```
+
+Which is roughly equivalent to calling:
+
+```ruby
+fill_form(:user, attributes_for(:user, :registered, name: 'Frank'))
 ```
 
 ## Assumptions
