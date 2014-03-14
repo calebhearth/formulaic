@@ -1,5 +1,6 @@
 # Formulaic
 
+[![Build Status](https://travis-ci.org/thoughtbot/formulaic.png?branch=master)](https://travis-ci.org/thoughtbot/formulaic)
 [![Code Climate](https://codeclimate.com/github/thoughtbot/formulaic.png)](https://codeclimate.com/github/thoughtbot/formulaic)
 
 Remove the tedium of formulaic form filling with Capybara.
