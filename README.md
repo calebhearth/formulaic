@@ -1,5 +1,7 @@
 # Formulaic
 
+[![Code Climate](https://codeclimate.com/github/thoughtbot/formulaic.png)](https://codeclimate.com/github/thoughtbot/formulaic)
+
 Remove the tedium of formulaic form filling with Capybara.
 
 Formulaic allows you to specify a hash of attributes to be input rather than
