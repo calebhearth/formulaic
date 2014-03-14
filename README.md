@@ -118,7 +118,7 @@ require 'formulaic/factory_girl'
 fill_with_factory(:user, factory_arguments: [:registered, name: 'Frank'])
 ```
 
-Which is roughly equivalent to calling:
+Which has the same result as calling:
 
 ```ruby
 fill_form(:user, attributes_for(:user, :registered, name: 'Frank'))
