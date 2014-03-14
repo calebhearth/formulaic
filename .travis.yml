@@ -1,0 +1,6 @@
+rvm:
+  - "2.0.0"
+  - "2.1.1"
+  - "2.1-head"
+notifications:
+  email: false
