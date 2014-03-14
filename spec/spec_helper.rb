@@ -1,7 +1,7 @@
 require 'formulaic'
 require 'pry'
 
-I18n.enforce_available_locales = false
+I18n.enforce_available_locales = true
 
 module SpecHelper
   def input(model, field)
