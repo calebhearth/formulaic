@@ -78,6 +78,15 @@ describe 'Fill in user form' do
     expect(input(:user, :terms_of_service)).to be_checked
   end
 
+  it 'finds and fills in a number field' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, age: 10)
+
+    form.fill
+
+    expect(input(:user, :age).value).to eq '10'
+  end
+
   it 'selects a string if there is no input' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, awesome: 'Yes')
