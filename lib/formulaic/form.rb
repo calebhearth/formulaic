@@ -7,6 +7,7 @@ module Formulaic
       Date => Formulaic::Inputs::DateInput,
       Array => Formulaic::Inputs::ArrayInput,
       String => Formulaic::Inputs::StringInput,
+      Fixnum => Formulaic::Inputs::StringInput,
       TrueClass => Formulaic::Inputs::BooleanInput,
       FalseClass => Formulaic::Inputs::BooleanInput,
     }.freeze

@@ -22,6 +22,7 @@ module SpecHelper
         simple_form:
           labels:
             user:
+              age: Age
               name: Display name
               email: Email
               phone: Phone Number
