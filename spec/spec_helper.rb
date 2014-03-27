@@ -1,6 +1,8 @@
 require 'formulaic'
 require 'pry'
 
+I18n.enforce_available_locales = true
+
 module SpecHelper
   def input(model, field)
     page.find("##{model}_#{field}")
@@ -38,4 +40,5 @@ end
 
 RSpec.configure do |c|
   c.include SpecHelper
+  c.treat_symbols_as_metadata_keys_with_true_values = true
 end
