@@ -26,7 +26,7 @@ module Formulaic
       private
 
       def is_radio_button?
-        radio_button_id = [model_name, field, value].join("_")
+        radio_button_id = [model_name, field, value].join('_')
 
         page.has_selector?(:radio_button, input_text) ||
         page.has_selector?(:radio_button, radio_button_id)

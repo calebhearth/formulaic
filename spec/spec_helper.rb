@@ -8,7 +8,7 @@ module SpecHelper
       ids.push(value)
     end
 
-    id = ids.join("_")
+    id = ids.join('_')
 
     page.find("##{id}")
   end

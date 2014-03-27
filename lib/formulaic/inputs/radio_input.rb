@@ -12,8 +12,8 @@ module Formulaic
       end
 
       def option_text
-        i18n_key = [model_name, field, value].join(".")
-        I18n.t(i18n_key, scope: "simple_form.options", default: "")
+        i18n_key = [model_name, field, value].join('.')
+        I18n.t(i18n_key, scope: 'simple_form.options', default: '')
       end
     end
   end

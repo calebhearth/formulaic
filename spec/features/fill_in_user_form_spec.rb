@@ -28,7 +28,7 @@ describe 'Fill in user form' do
     form = Formulaic::Form.new(:user, gender: 'female')
 
     form.fill
-    
+
     expect(input(:user, :gender, :female)).to be_checked
   end
 
