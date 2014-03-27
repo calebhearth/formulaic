@@ -2,8 +2,15 @@ require 'formulaic'
 require 'pry'
 
 module SpecHelper
-  def input(model, field)
-    page.find("##{model}_#{field}")
+  def input(model, field, value = nil)
+    ids = [model, field]
+    unless value.nil?
+      ids.push(value)
+    end
+
+    id = ids.join('_')
+
+    page.find("##{id}")
   end
 
   def visit(page_name)
@@ -32,6 +39,11 @@ module SpecHelper
               terms_of_service: I agree to the Terms of Service
               awesome: Are you awesome?
               bio: Biography
+          options:
+            user:
+              gender:
+                male: Male
+                female: Female
     TRANSLATIONS
   end
 end
