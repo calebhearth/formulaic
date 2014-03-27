@@ -6,6 +6,24 @@
   <div class="input integer required user_age"><label class="integer required" for="user_age"><abbr title="required">*</abbr> Age</label><input class="numeric integer age required" id="user_age" maxlength="255" name="user[age]" size="50" type="number"></div>
   <div class="input url required user_url"><label class="tel required" for="user_url"><abbr title="required">*</abbr> Website</label><input class="string url required" id="user_url" maxlength="255" name="user[url]" size="50" type="url"></div>
   <div class="input password optional user_password"><label class="password optional" for="user_password">Password</label><input class="password optional" id="user_password" name="user[password]" size="50" type="password"></div>
+  <div class="radio_buttons optional user_gender">
+    <label class="radio">
+      <div class="radio focus">
+        <span class="checked">
+          <input checked="checked" class="radio_buttons optional form-control" id="user_gender_male" name="user[gender]" type="radio" value="male">
+        </span>
+      </div>
+      Male
+    </label>
+    <label class="radio">
+      <div class="radio">
+        <span>
+          <input class="radio_buttons optional form-control" id="user_gender_female" name="user[gender]" type="radio" value="female">
+      </span>
+      </div>
+      Female
+    </label>
+  </div>
   <div class="input select required user_awesome">
     <label class="select required" for="user_awesome"><abbr title="required">*</abbr> Are you awesome?</label>
     <select class="select required" id="user_awesome" name="user[awesome]">

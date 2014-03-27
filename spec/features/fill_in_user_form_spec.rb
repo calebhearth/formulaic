@@ -22,6 +22,16 @@ describe 'Fill in user form' do
     expect(input(:user, :password).value).to eq 'supersecr3t'
   end
 
+  it 'finds and fills a radio field' do
+    visit 'user_form'
+
+    form = Formulaic::Form.new(:user, gender: 'female')
+
+    form.fill
+    
+    expect(input(:user, :gender, :female)).to be_checked
+  end
+
   it 'finds and fills a email field' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, email: 'caleb@example.com')
