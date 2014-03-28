@@ -23,6 +23,7 @@ module SpecHelper
           labels:
             user:
               age: Age
+              avatar: Avatar
               name: Display name
               email: Email
               phone: Phone Number

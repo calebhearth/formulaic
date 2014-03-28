@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pathname'
 
 describe 'Fill in user form' do
 
@@ -94,5 +95,15 @@ describe 'Fill in user form' do
     form.fill
 
     expect(page).to have_select('user_awesome', selected: 'Yes')
+  end
+
+  it 'attaches a file to a file field' do
+    visit 'user_form'
+    file = File.open('spec/fixtures/file.txt')
+    form = Formulaic::Form.new(:user, avatar: file)
+
+    form.fill
+
+    expect(input(:user, :avatar).value).to eq file.path
   end
 end
