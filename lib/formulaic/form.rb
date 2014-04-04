@@ -10,6 +10,7 @@ module Formulaic
       Fixnum => Formulaic::Inputs::StringInput,
       TrueClass => Formulaic::Inputs::BooleanInput,
       FalseClass => Formulaic::Inputs::BooleanInput,
+      File => Formulaic::Inputs::FileInput,
     }.freeze
 
     def initialize(model_name, attributes)

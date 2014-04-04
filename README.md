@@ -132,6 +132,7 @@ around `I18n.t`.
   | `TrueClass`                           | `check`                          |
   | `FalseClass`                          | `uncheck`                        |
   | `Array`                               | `check` each array member, which should all be strings |
+  | `File`                                | `attach_file` with `File#path`   |
 
 * Formulaic is currently tied to `simple_form` translations and field structure.
   If you pass a string for the attribute, we’ll try to fill the input that
@@ -143,6 +144,7 @@ around `I18n.t`.
 * Formulaic can’t figure out how to fill fields with HTML labels:
   `page.fill_in('<strong>Text</strong> here', with: 'something')` doesn’t work
   with Capybara. The usual workaround is to pass a CSS selector.
+* Formulaic can't handle multiple file attachments on the same input.
 
 ## About
 
