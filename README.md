@@ -75,7 +75,7 @@ The `model_name` and `action` should match up to the
 # spec/spec_helper.rb
 
 RSpec.configure do |config|
-  config.include Formulaic::Dsl
+  config.include Formulaic::Dsl, type: :feature
 end
 ```
 
