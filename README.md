@@ -69,6 +69,16 @@ submit(:user, :update)
 The `model_name` and `action` should match up to the
 `helpers.submit.<model_name>.<action>` translations.
 
+### Nested Forms
+
+If you have nested forms, through `fields_for` (or any variant), you are able to
+fill them with an extra call to `fill_form`.
+
+```ruby
+fill_form(main_model_name, main_model_attributes)
+fill_form(nested_model_name, nested_model_attributes)
+```
+
 ### Integration with RSpec:
 
 ```ruby
