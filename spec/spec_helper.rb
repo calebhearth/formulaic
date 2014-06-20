@@ -12,9 +12,9 @@ module SpecHelper
 
   def page
     @page ||= begin
-      Capybara.app = Rack::File.new(File.expand_path('../fixtures', __FILE__))
-      Capybara.current_session
-    end
+                Capybara.app = Rack::File.new(File.expand_path('../fixtures', __FILE__))
+                Capybara.current_session
+              end
   end
 
   def load_translations(key = 'labels')
