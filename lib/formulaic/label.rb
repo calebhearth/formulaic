@@ -10,7 +10,8 @@ module Formulaic
       if attribute.is_a?(String)
         attribute
       else
-        translate || human_attribute_name || attribute.to_s
+        translate('placeholders') || translate('labels') ||
+          human_attribute_name || attribute.to_s
       end
     end
     alias_method :to_s, :to_str
@@ -19,8 +20,8 @@ module Formulaic
 
     attr_reader :model_name, :attribute, :action
 
-    def translate
-      I18n.t(lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths).presence
+    def translate(key = 'labels')
+      I18n.t(lookup_paths.first, scope: :"simple_form.#{key}", default: lookup_paths).presence
     end
 
     def human_attribute_name

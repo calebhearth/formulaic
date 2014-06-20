@@ -17,10 +17,10 @@ module SpecHelper
               end
   end
 
-  def load_translations
+  def load_translations(key = 'labels')
     I18n.backend.store_translations(:en, YAML.load(<<-TRANSLATIONS))
         simple_form:
-          labels:
+          #{key}:
             user:
               age: Age
               avatar: Avatar
