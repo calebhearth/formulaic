@@ -1,5 +1,4 @@
 require 'formulaic'
-require 'pry'
 
 module SpecHelper
   def input(model, field)
@@ -24,15 +23,16 @@ module SpecHelper
             user:
               age: Age
               avatar: Avatar
-              name: Display name
-              email: Email
-              phone: Phone Number
-              url: Website
-              password: Password
-              date_of_birth: Date of birth
-              terms_of_service: I agree to the Terms of Service
               awesome: Are you awesome?
               bio: Biography
+              date_of_birth: Date of birth
+              email: Email
+              name: Display name
+              new:
+                password: Password
+                phone: Phone Number
+                terms_of_service: I agree to the Terms of Service
+                url: Website
     TRANSLATIONS
   end
 end

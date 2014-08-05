@@ -2,7 +2,7 @@ module Formulaic
   module Inputs
     class DateInput < Input
       def fill
-        select_date(value, from: input(model_name, field))
+        select_date(value, from: label)
       end
 
       private

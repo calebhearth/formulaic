@@ -13,9 +13,9 @@ module Formulaic
       File => Formulaic::Inputs::FileInput,
     }.freeze
 
-    def initialize(model_name, attributes)
+    def initialize(model_name, action, attributes)
+      @action = action
       @inputs = build_inputs(model_name, attributes)
-      @session = session
     end
 
     def fill
@@ -24,7 +24,7 @@ module Formulaic
 
     private
 
-    attr_reader :session, :model_name, :inputs
+    attr_reader :model_name, :inputs, :action
 
     def build_inputs(model_name, attributes)
       attributes.map do |field, value|
@@ -33,7 +33,8 @@ module Formulaic
     end
 
     def build_input(model_name, field, value)
-      input_class_for(value).new(model_name, field, value)
+      label = Label.new(model_name, field, action)
+      input_class_for(value).new(label, value)
     end
 
     def input_class_for(value)

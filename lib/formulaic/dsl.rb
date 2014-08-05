@@ -1,10 +1,10 @@
 module Formulaic
   module Dsl
-    def fill_form(model_name, attributes)
-      Form.new(model_name, attributes).fill
+    def fill_form(model_name, action = :new, attributes)
+      Form.new(model_name, action, attributes).fill
     end
 
-    def input(model_name, field, action = :create)
+    def input(model_name, field, action = :new)
       Label.new(model_name, field, action).to_str
     end
 

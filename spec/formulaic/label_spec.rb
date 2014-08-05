@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Formulaic::Label do
+  before(:each) do
+    class_double("User").as_stubbed_const
+    allow(User).to receive(:human_attribute_name).and_return("Human Attribute Name")
+  end
+
   it 'returns the string if there are no translations and it can not human_attribute_name the class' do
     expect(label(nil, 'My label')).to eq 'My label'
   end
@@ -19,13 +24,7 @@ describe Formulaic::Label do
     expect(label(:user, 'Work URL')).to eq 'Work URL'
   end
 
-  def label(model_name, attribute, action = :create)
+  def label(model_name, attribute, action = :new)
     Formulaic::Label.new(model_name, attribute, action).to_str
-  end
-end
-
-class User
-  def self.human_attribute_name(*)
-    'Human Attribute Name'
   end
 end

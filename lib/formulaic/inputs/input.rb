@@ -6,19 +6,14 @@ module Formulaic
     class Input
       include Capybara::DSL
 
-      def initialize(model_name, field, value)
-        @model_name = model_name
-        @field = field
+      def initialize(label, value)
+        @label = label.to_str
         @value = value
       end
 
       private
 
-      def input(model_name, field, action = :create)
-        Label.new(model_name, field, action).to_str
-      end
-
-      attr_accessor :model_name, :field, :value
+      attr_accessor :label, :value
     end
   end
 end

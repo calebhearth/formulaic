@@ -7,7 +7,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills text fields' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, name: 'George')
+    form = Formulaic::Form.new(:user, :new, name: 'George')
 
     form.fill
 
@@ -16,7 +16,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills a password field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, password: 'supersecr3t')
+    form = Formulaic::Form.new(:user, :new, password: 'supersecr3t')
 
     form.fill
 
@@ -25,7 +25,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills a email field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, email: 'caleb@example.com')
+    form = Formulaic::Form.new(:user, :new, email: 'caleb@example.com')
 
     form.fill
 
@@ -34,7 +34,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills a tel field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, phone: '123-555-1234')
+    form = Formulaic::Form.new(:user, :new, phone: '123-555-1234')
 
     form.fill
 
@@ -43,7 +43,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills a url field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, url: 'https://github.com')
+    form = Formulaic::Form.new(:user, :new, url: 'https://github.com')
 
     form.fill
 
@@ -52,7 +52,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills a textarea' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, bio: 'blah blah blah')
+    form = Formulaic::Form.new(:user, :new, bio: 'blah blah blah')
 
     form.fill
 
@@ -61,7 +61,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills a date field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, date_of_birth: Date.new(1980, 1, 2))
+    form = Formulaic::Form.new(:user, :new, date_of_birth: Date.new(1980, 1, 2))
 
     form.fill
 
@@ -72,7 +72,7 @@ describe 'Fill in user form' do
 
   it 'finds and checks a boolean field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, terms_of_service: true)
+    form = Formulaic::Form.new(:user, :new, terms_of_service: true)
 
     form.fill
 
@@ -81,7 +81,7 @@ describe 'Fill in user form' do
 
   it 'finds and fills in a number field' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, age: 10)
+    form = Formulaic::Form.new(:user, :new, age: 10)
 
     form.fill
 
@@ -90,7 +90,7 @@ describe 'Fill in user form' do
 
   it 'selects a string if there is no input' do
     visit 'user_form'
-    form = Formulaic::Form.new(:user, awesome: 'Yes')
+    form = Formulaic::Form.new(:user, :new, awesome: 'Yes')
 
     form.fill
 
@@ -100,7 +100,7 @@ describe 'Fill in user form' do
   it 'attaches a file to a file field' do
     visit 'user_form'
     file = File.open('spec/fixtures/file.txt')
-    form = Formulaic::Form.new(:user, avatar: file)
+    form = Formulaic::Form.new(:user, :new, avatar: file)
 
     form.fill
 

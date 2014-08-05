@@ -2,19 +2,15 @@ module Formulaic
   module Inputs
     class StringInput < Input
       def fill
-        if page.has_selector?(:fillable_field, input_text)
-          fill_in(input_text, with: value)
-        elsif page.has_selector?(:radio_button, input_text)
+        if page.has_selector?(:fillable_field, label)
+          fill_in(label, with: value)
+        elsif page.has_selector?(:radio_button, label)
           choose(value)
-        elsif has_option_in_select?(value, input_text)
-          select(value, from: input_text)
+        elsif has_option_in_select?(value, label)
+          select(value, from: label)
         else
-          raise Formulaic::InputNotFound.new(%[Unable to find input "#{input_text}".])
+          raise Formulaic::InputNotFound.new(%[Unable to find input "#{label}".])
         end
-      end
-
-      def input_text
-        @input_text ||= input(model_name, field)
       end
 
       def has_option_in_select?(option, select)

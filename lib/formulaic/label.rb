@@ -1,6 +1,6 @@
 module Formulaic
   class Label
-    def initialize(model_name, attribute, action = :create)
+    def initialize(model_name, attribute, action)
       @model_name = model_name
       @attribute = attribute
       @action = action
