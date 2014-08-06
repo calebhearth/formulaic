@@ -27,7 +27,7 @@ end
 ### `fill_form`
 
 ```ruby
-fill_form(model_name, attributes)
+fill_form(model_name, action = :new, attributes)
 ```
 
 `fill_form` provides an interface to completely filling out a form. Provide the
@@ -68,6 +68,15 @@ submit(:user, :update)
 
 The `model_name` and `action` should match up to the
 `helpers.submit.<model_name>.<action>` translations.
+
+### `fill_form_and_submit`
+
+```ruby
+fill_form_and_submit(:user, action = :new, attributes)
+```
+
+Effectively a `fill_form` followed by `click_on submit`, but smart enough to
+`fill_form` with `:new` and `submit` with `:create` and the edit/update cousin.
 
 ### Nested Forms
 
@@ -153,7 +162,8 @@ around `I18n.t`.
   the labels to determine where to fill what data.
 * Formulaic can’t figure out how to fill fields with HTML labels:
   `page.fill_in('<strong>Text</strong> here', with: 'something')` doesn’t work
-  with Capybara. The usual workaround is to pass a CSS selector.
+  with Capybara. The usual workaround is to pass a CSS selector (which you can
+  do by passing a string as the attribute key).
 * Formulaic can't handle multiple file attachments on the same input.
 
 ## About

@@ -48,10 +48,26 @@ describe Formulaic::Dsl do
     end
   end
 
-  it 'finds a submit label' do
-    I18n.backend.store_translations(:en, { helpers: { submit: { user: { create: 'Create user' } } } })
+  describe 'submit' do
+    it 'finds a submit label' do
+      I18n.backend.store_translations(:en, { helpers: { submit: { user: { create: 'Create user' } } } })
 
-    expect(object_with_dsl.submit(:user)).to eq 'Create user'
+      expect(object_with_dsl.submit(:user)).to eq 'Create user'
+    end
+  end
+
+  describe 'fill_form_and_submit' do
+    it 'fills a form and submits it' do
+      I18n.backend.store_translations(:en, { helpers: { submit: { model: { create: 'Create model' } } } })
+      allow(Formulaic::Form).to receive(:new).and_return(double(fill: nil))
+      allow(object_with_dsl).to receive(:click_on)
+
+      object_with_dsl.fill_form_and_submit :model, attributes: :values
+
+      expect(Formulaic::Form).to have_received(:new)
+        .with(:model, :new, attributes: :values)
+      expect(object_with_dsl).to have_received(:click_on).with('Create model')
+    end
   end
 
   def object_with_dsl
