@@ -106,4 +106,23 @@ describe 'Fill in user form' do
 
     expect(input(:user, :avatar).value).to eq file.path
   end
+
+  it 'finds and fills a date field regardless of select box order' do
+    visit 'event_form'
+
+    form = Formulaic::Form.new :event, :new,
+      "Starts on" => Date.new(2014, 3, 4),
+      "Ends on" =>  Date.new(2015, 12, 31)
+
+    form.fill
+
+    expect(page.find('#event_starts_on_1i').value).to eq('2014')
+    expect(page.find('#event_starts_on_2i').value).to eq('3')
+    expect(page.find('#event_starts_on_3i').value).to eq('4')
+
+    expect(page.find('#event_ends_on_1i').value).to eq('2015')
+    expect(page.find('#event_ends_on_2i').value).to eq('12')
+    expect(page.find('#event_ends_on_3i').value).to eq('31')
+  end
+
 end
