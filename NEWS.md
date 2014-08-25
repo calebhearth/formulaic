@@ -1,3 +1,10 @@
+v0.1.1
+------
+
+* Make date input field name gsub indepedent of select box order [#33](https://github.com/thoughtbot/formulaic/pull/33)
+
+  *Ross Kaffenberger*
+
 v0.1.0
 ------
 
