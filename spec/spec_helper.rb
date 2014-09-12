@@ -21,15 +21,17 @@ module SpecHelper
         simple_form:
           labels:
             user:
-              age: Age
-              avatar: Avatar
+              age: Your Age
+              avatar: Your Avatar
               awesome: Are you awesome?
               bio: Biography
-              date_of_birth: Date of birth
-              email: Email
-              name: Display name
+              date_of_birth: Your Date of birth
+              likes: Your Likes
+              dislikes: Your Dislikes
+              email: Your Email
+              name: Your Display name
               new:
-                password: Password
+                password: Your Password
                 phone: Phone Number
                 terms_of_service: I agree to the Terms of Service
                 url: Website

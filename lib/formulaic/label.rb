@@ -1,5 +1,7 @@
 module Formulaic
   class Label
+    attr_reader :model_name, :attribute, :action
+
     def initialize(model_name, attribute, action)
       @model_name = model_name
       @attribute = attribute
@@ -16,8 +18,6 @@ module Formulaic
     alias_method :to_s, :to_str
 
     private
-
-    attr_reader :model_name, :attribute, :action
 
     def translate
       I18n.t(lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths).presence

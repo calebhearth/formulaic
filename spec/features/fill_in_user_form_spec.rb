@@ -88,6 +88,58 @@ describe 'Fill in user form' do
     expect(input(:user, :age).value).to eq '10'
   end
 
+  it 'raises a useful error if selecting multiple from a normal select' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, awesome: ['Yes', 'No'])
+
+    expect { form.fill }
+      .to raise_error(
+        Formulaic::InputNotFound,
+        'Unable to find checkboxes or select[multiple] "Are you awesome?" containing all options ["Yes", "No"].'
+      )
+  end
+
+  it 'raises a useful error if not all select options are present' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, likes: ['Ruby', 'Perl'])
+
+    expect { form.fill }
+      .to raise_error(
+        Formulaic::InputNotFound,
+        'Unable to find checkboxes or select[multiple] "Your Likes" containing all options ["Ruby", "Perl"].'
+      )
+  end
+
+  it 'selects an array of strings' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, likes: ['Ruby', 'Rails'])
+
+    form.fill
+
+    expect(input(:user, :likes).value).to eq ['ruby', 'rails']
+  end
+
+  it 'raises a useful error if not all checkboxes are present' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, dislikes: ['Java', 'Go'])
+
+    expect { form.fill }
+      .to raise_error(
+        Formulaic::InputNotFound,
+        'Unable to find checkboxes or select[multiple] "Your Dislikes" containing all options ["Java", "Go"].'
+      )
+  end
+
+  it 'selects an array of checkboxes' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, dislikes: ['Java', 'PHP'])
+
+    form.fill
+
+    expect(page).to have_checked_field "Java"
+    expect(page).to have_checked_field "PHP"
+  end
+
   it 'selects a string if there is no input' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, :new, awesome: 'Yes')
