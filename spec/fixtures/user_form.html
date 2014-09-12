@@ -15,6 +15,29 @@
       <option value="false">No</option>
     </select>
   </div>
+  <div class="input select user_likes">
+    <label class="select" for="user_likes">Likes</label>
+    <select class="select" id="user_likes" name="user[likes][]" multiple>
+      <option value=""></option>
+      <option value="ruby">Ruby</option>
+      <option value="rails">Rails</option>
+      <option value="git">Git</option>
+    </select>
+  </div>
+  <div class="input check_boxes optional user_dislikes">
+    <label class="check_boxes optional">Dislikes</label>
+    <span class="checkbox">
+      <input class="check_boxes optional" id="user_dislikes_1"
+      name="user[dislikes][]" type="checkbox" value="java">
+      <label class="collection_check_boxes" for="user_dislikes_1">Java</label>
+    </span>
+    <span class="checkbox">
+      <input class="check_boxes optional" id="user_dislikes_2"
+      name="user[dislikes][]" type="checkbox" value="php">
+      <label class="collection_check_boxes" for="user_dislikes_2">PHP</label>
+    </span>
+    <input name="user[dislikes][]" type="hidden" value="">
+  </div>
   <div class="input text required user_bio"><label class="text required" for="user_bio"><abbr title="required">*</abbr> Biography</label><textarea class="text required" cols="40" id="user_bio" name="user[bio]" rows="20" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 464px;"></textarea></div>
   <div class="input date required user_date_of_birth">
     <label class="date required" for="user_date_of_birth_1i"><abbr title="required">*</abbr> Date of birth</label>

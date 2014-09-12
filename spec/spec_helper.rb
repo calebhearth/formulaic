@@ -26,6 +26,8 @@ module SpecHelper
               awesome: Are you awesome?
               bio: Biography
               date_of_birth: Date of birth
+              likes: Likes
+              dislikes: Dislikes
               email: Email
               name: Display name
               new:

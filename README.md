@@ -150,7 +150,7 @@ around `I18n.t`.
   | `Date`, `ActiveSupport::TimeWithZone` | `select` year, month, and day    |
   | `TrueClass`                           | `check`                          |
   | `FalseClass`                          | `uncheck`                        |
-  | `Array`                               | `check` each array member, which should all be strings |
+  | `Array`                               | `check` or `select` each array member, which should all be strings |
   | `File`                                | `attach_file` with `File#path`   |
 
 * Formulaic is currently tied to `simple_form` translations and field structure.
