@@ -116,6 +116,16 @@ describe 'Fill in user form' do
     expect(page).to have_select('user_awesome', selected: 'Yes')
   end
 
+  it 'notifies the caller when a single select is called as multiple' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, awesome: ['Yes', 'No'])
+
+    expect { form.fill }.to raise_error(
+      Formulaic::InputNotFound,
+      "No select or checkbox has all options in [\"Yes\", \"No\"]"
+    )
+  end
+
   it 'attaches a file to a file field' do
     visit 'user_form'
     file = File.open('spec/fixtures/file.txt')
