@@ -27,7 +27,7 @@ end
 ### `fill_form`
 
 ```ruby
-fill_form(model_name, action = :new, attributes)
+fill_form(model_name, :new, attributes)
 ```
 
 `fill_form` provides an interface to completely filling out a form. Provide the
@@ -51,7 +51,7 @@ as it could be useful.
 ### `submit`
 
 ```ruby
-submit(model_name, action = :create)
+submit(model_name, :create)
 ```
 
 `submit` functions like [`input`](#input), but finds the translation for the
@@ -60,7 +60,7 @@ to [`fill_form`](#fill\_form). Typically, the return value of `submit` will be
 passed directly to Capybara’s `click_on` method.
 
 If you are submitting a form that is not for the `create` action, you may need
-to pass the `action`:
+to pass the action:
 
 ```ruby
 submit(:user, :update)
@@ -72,7 +72,7 @@ The `model_name` and `action` should match up to the
 ### `fill_form_and_submit`
 
 ```ruby
-fill_form_and_submit(:user, action = :new, attributes)
+fill_form_and_submit(:user, :new, attributes)
 ```
 
 Effectively a `fill_form` followed by `click_on submit`, but smart enough to
