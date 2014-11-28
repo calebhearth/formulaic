@@ -43,7 +43,7 @@ module Formulaic
     end
 
     def class_exists?(class_name)
-      Object.const_defined?(model_name.to_s.classify)
+      Object.const_defined?(class_name.to_s.classify)
     rescue NameError
       false
     end
