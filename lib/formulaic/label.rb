@@ -28,8 +28,7 @@ module Formulaic
     end
 
     def human_attribute_name
-      model_class = Object.const_get(model_name.classify)
-      model_class.try(:human_attribute_name, attribute)
+      Object.const_get(model_name.classify).try(:human_attribute_name, attribute)
     rescue NameError
       nil
     end
