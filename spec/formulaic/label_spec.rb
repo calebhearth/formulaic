@@ -1,17 +1,12 @@
 require 'spec_helper'
 
 describe Formulaic::Label do
-  before(:each) do
-    class_double("User").as_stubbed_const
-    allow(User).to receive(:human_attribute_name).and_return("Human Attribute Name")
-  end
-
   it 'returns the string if there are no translations and it can not human_attribute_name the class' do
     expect(label(nil, 'My label')).to eq 'My label'
   end
 
   it 'returns human_attribute_name if available' do
-    expect(label(:user, :attribute)).to eq 'Human Attribute Name'
+    expect(label(:user, :first_name)).to eq 'First name'
   end
 
   it 'uses a translation if available' do
@@ -22,6 +17,16 @@ describe Formulaic::Label do
 
   it 'should leave cases alone' do
     expect(label(:user, 'Work URL')).to eq 'Work URL'
+  end
+
+  it 'uses the attribute when the model is not found' do
+    expect(label(:student, 'Course selection')).to eq 'Course selection'
+  end
+
+  class User
+    def self.human_attribute_name(attribute)
+      attribute.to_s.humanize
+    end
   end
 
   def label(model_name, attribute, action = :new)

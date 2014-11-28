@@ -3,33 +3,35 @@ module Formulaic
     attr_reader :model_name, :attribute, :action
 
     def initialize(model_name, attribute, action)
-      @model_name = model_name
-      @attribute = attribute
-      @action = action
+      @model_name = model_name.to_s
+      @attribute  = attribute
+      @action     = action
     end
 
     def to_str
-      if attribute.is_a?(String)
-        attribute
-      else
-        translate || human_attribute_name || attribute.to_s
-      end
+      send("attribute_#{attribute.class}")
     end
     alias_method :to_s, :to_str
 
     private
+
+    def attribute_String
+      attribute
+    end
+
+    def attribute_Symbol
+      translate || human_attribute_name || attribute.to_s
+    end
 
     def translate
       I18n.t(lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths).presence
     end
 
     def human_attribute_name
-      if class_exists?(model_name.to_s.classify)
-        model_class = model_name.to_s.classify.constantize
-        if model_class.respond_to?(:human_attribute_name)
-          model_class.human_attribute_name(attribute.to_s)
-        end
-      end
+      model_class = Object.const_get(model_name.classify)
+      model_class.try(:human_attribute_name, attribute)
+    rescue NameError
+      nil
     end
 
     def lookup_paths
@@ -38,14 +40,9 @@ module Formulaic
         :"#{model_name}.#{attribute}",
         :"defaults.#{action}.#{attribute}",
         :"defaults.#{attribute}",
-        '',
+        ''
       ]
     end
 
-    def class_exists?(class_name)
-      Object.const_defined?(model_name.to_s.classify)
-    rescue NameError
-      false
-    end
   end
 end
