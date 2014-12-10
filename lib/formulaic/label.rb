@@ -9,7 +9,7 @@ module Formulaic
     end
 
     def to_str
-      send("attribute_#{attribute.class.downcase}")
+      send("attribute_#{attribute.class.to_s.downcase}")
     end
     alias_method :to_s, :to_str
 
@@ -24,9 +24,7 @@ module Formulaic
     end
 
     def translate
-      I18n.t(
-        lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths
-      ).presence
+      I18n.t(lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths).presence
     end
 
     def human_attribute_name
