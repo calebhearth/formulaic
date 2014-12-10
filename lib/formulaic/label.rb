@@ -4,8 +4,8 @@ module Formulaic
 
     def initialize(model_name, attribute, action)
       @model_name = model_name.to_s
-      @attribute  = attribute
-      @action     = action
+      @attribute = attribute
+      @action = action
     end
 
     def to_str
@@ -39,7 +39,7 @@ module Formulaic
         :"#{model_name}.#{attribute}",
         :"defaults.#{action}.#{attribute}",
         :"defaults.#{attribute}",
-        ''
+        '',
       ]
     end
 
