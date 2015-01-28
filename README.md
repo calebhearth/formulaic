@@ -9,6 +9,9 @@ Formulaic allows you to specify a hash of attributes to be input rather than
 procedurally calling Capybara’s DSL methods.
 
 ## Usage
+```ruby
+  gem 'formulaic', group: :test
+```
 
 ```ruby
 feature 'New user registration' do
