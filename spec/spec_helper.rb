@@ -6,7 +6,11 @@ module SpecHelper
   end
 
   def visit(page_name)
-    page.visit("/#{page_name}.html")
+    if I18n.locale == :es
+      page.visit("/#{page_name}_#{I18n.locale}.html")
+    else
+      page.visit("/#{page_name}.html")
+    end
   end
 
   def page
@@ -35,6 +39,23 @@ module SpecHelper
                 phone: Phone Number
                 terms_of_service: I agree to the Terms of Service
                 url: Website
+    TRANSLATIONS
+    I18n.backend.store_translations(:es, YAML.load(<<-TRANSLATIONS))
+      date:
+        month_names:
+          -
+          - Enero
+          - Febrero
+          - Marzo
+          - Abril
+          - Mayo
+          - Junio
+          - Julio
+          - Agosto
+          - Septiembre
+          - Octubre
+          - Noviembre
+          - Diciembre
     TRANSLATIONS
   end
 end
