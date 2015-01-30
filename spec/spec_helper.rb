@@ -36,6 +36,23 @@ module SpecHelper
                 terms_of_service: I agree to the Terms of Service
                 url: Website
     TRANSLATIONS
+    I18n.backend.store_translations(:es, YAML.load(<<-TRANSLATIONS))
+      date:
+        month_names:
+          -
+          - Enero
+          - Febrero
+          - Marzo
+          - Abril
+          - Mayo
+          - Junio
+          - Julio
+          - Agosto
+          - Septiembre
+          - Octubre
+          - Noviembre
+          - Diciembre
+    TRANSLATIONS
   end
 end
 

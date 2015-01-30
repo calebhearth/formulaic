@@ -70,6 +70,21 @@ describe 'Fill in user form' do
     expect(page.find('#user_date_of_birth_3i').value).to eq('2')
   end
 
+  it 'finds and fills a spanish locale date field' do
+    begin
+      I18n.locale = :es
+      visit 'user_form_es'
+      form = Formulaic::Form.new(:user, :new, date_of_birth: Date.new(1980, 1, 2))
+      form.fill
+
+      expect(page.find('#user_date_of_birth_1i').value).to eq('1980')
+      expect(page.find('#user_date_of_birth_2i').value).to eq('1')
+      expect(page.find('#user_date_of_birth_3i').value).to eq('2')
+    ensure
+      I18n.locale = :en
+    end
+  end
+
   it 'finds and checks a boolean field' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, :new, terms_of_service: true)
