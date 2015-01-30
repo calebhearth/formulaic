@@ -6,11 +6,7 @@ module SpecHelper
   end
 
   def visit(page_name)
-    if I18n.locale == :es
-      page.visit("/#{page_name}_#{I18n.locale}.html")
-    else
-      page.visit("/#{page_name}.html")
-    end
+    page.visit("/#{page_name}.html")
   end
 
   def page
