@@ -5,6 +5,7 @@ module Formulaic
     ATTRIBUTE_INPUT_MAP = {
       ActiveSupport::TimeWithZone => Formulaic::Inputs::DateInput,
       Date => Formulaic::Inputs::DateInput,
+      DateTime => Formulaic::Inputs::DateTimeInput,
       Array => Formulaic::Inputs::ArrayInput,
       String => Formulaic::Inputs::StringInput,
       Fixnum => Formulaic::Inputs::StringInput,
