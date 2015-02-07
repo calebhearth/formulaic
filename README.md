@@ -142,6 +142,11 @@ it knows to pass directly to `fill_in` rather than trying to find a translation.
 You’ll need to find submit buttons yourself since `submit` is a thin wrapper
 around `I18n.t`.
 
+Formulaic assumes your forms don't use AJAX, setting the wait time to 0. This can be configured using:
+```ruby
+Formulaic.default_wait_time = 5
+```
+
 ## Known Limitations
 
 * Formulaic currently supports the following mappings from the `#class` of the
