@@ -117,6 +117,15 @@ describe 'Fill in user form' do
     expect(input(:user, :age).value).to eq '10'
   end
 
+  it 'finds an fills in a number field which is a float' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, score: 23.53)
+
+    form.fill
+
+    expect(input(:user, :score).value).to eq '23.53'
+  end
+
   it 'raises a useful error if selecting multiple from a normal select' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, :new, awesome: ['Yes', 'No'])
