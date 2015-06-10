@@ -206,4 +206,13 @@ describe 'Fill in user form' do
     expect(page.find('#event_ends_on_3i').value).to eq('31')
   end
 
+  it 'knows to use _ids for association fields' do
+    visit 'user_form'
+
+    form = Formulaic::Form.new(:user, :new, friends: ['Caleb'])
+
+    form.fill
+
+    expect(page.find('#user_friend_ids_1')).to be_checked
+  end
 end

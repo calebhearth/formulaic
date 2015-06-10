@@ -43,6 +43,17 @@
     </span>
     <input name="user[dislikes][]" type="hidden" value="">
   </div>
+  <div class="input check_boxes optional user_friends">
+    <label class="check_boxes optional">Friends</label>
+    <span class="checkbox">
+      <label for="user_friend_ids_1">
+        <input class="check_boxes optional" type="checkbox" value="1" name="user[friend_ids][]" id="user_friend_ids_1">
+        Caleb
+      </label>
+    </span>
+    <input type="hidden" name="user[friend_ids][]" value="">
+  </div>
+
   <div class="input text required user_bio"><label class="text required"
       for="user_bio"><abbr title="required">*</abbr> Your Biography</label><textarea class="text required" cols="40" id="user_bio" name="user[bio]" rows="20" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 464px;"></textarea></div>
   <div class="input date required user_date_of_birth">

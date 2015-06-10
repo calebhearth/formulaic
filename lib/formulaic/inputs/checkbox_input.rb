@@ -28,8 +28,17 @@ module Formulaic
         "input[type='checkbox'][name='#{label.model_name}[#{label.attribute}][]']"
       end
 
+      def checkbox_name_selector_for_association
+        "input[type='checkbox'][name='#{label.model_name}[#{label.attribute.to_s.singularize}_ids][]']"
+      end
+
       def checkbox_labels_selector
-        "#{checkbox_name_selector} ~ label,label:has(#{checkbox_name_selector})"
+        [
+          "#{checkbox_name_selector} ~ label",
+          "label:has(#{checkbox_name_selector})",
+          "#{checkbox_name_selector_for_association} ~ label",
+          "label:has(#{checkbox_name_selector_for_association})",
+        ].join(",")
       end
     end
   end
