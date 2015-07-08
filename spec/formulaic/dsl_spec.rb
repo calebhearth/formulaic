@@ -49,10 +49,14 @@ describe Formulaic::Dsl do
   end
 
   describe 'submit' do
-    it 'finds a submit label' do
+    it 'finds a custom submit label' do
       I18n.backend.store_translations(:en, { helpers: { submit: { user: { create: 'Create user' } } } })
 
       expect(object_with_dsl.submit(:user)).to eq 'Create user'
+    end
+
+    it 'finds the default submit label' do
+      expect(object_with_dsl.submit(:user)).to eq 'Create User'
     end
   end
 

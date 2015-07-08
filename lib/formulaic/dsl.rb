@@ -16,7 +16,8 @@ module Formulaic
     end
 
     def submit(model_class, action = :create)
-      I18n.t([:helpers, :submit, model_class, action].join('.'))
+      I18n.t("#{model_class}.#{action}", scope: [:helpers, :submit],
+        default: action, model: model_class.to_s.humanize)
     end
   end
 end
