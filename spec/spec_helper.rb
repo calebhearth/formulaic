@@ -18,6 +18,11 @@ module SpecHelper
 
   def load_translations
     I18n.backend.store_translations(:en, YAML.load(<<-TRANSLATIONS))
+        helpers:
+          submit:
+            create: 'Create %{model}'
+            update: 'Update %{model}'
+            submit: 'Save %{model}'
         simple_form:
           labels:
             user:
