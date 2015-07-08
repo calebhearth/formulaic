@@ -53,6 +53,8 @@ describe Formulaic::Dsl do
       I18n.backend.store_translations(:en, { helpers: { submit: { user: { create: 'Create user' } } } })
 
       expect(object_with_dsl.submit(:user)).to eq 'Create user'
+
+      I18n.backend.store_translations(:en, { helpers: { submit: { user: { create: nil } } } })
     end
 
     it 'finds the default submit label' do
@@ -71,6 +73,8 @@ describe Formulaic::Dsl do
       expect(Formulaic::Form).to have_received(:new)
         .with(:model, :new, attributes: :values)
       expect(object_with_dsl).to have_received(:click_on).with('Create model')
+
+      I18n.backend.store_translations(:en, { helpers: { submit: { model: { create: nil } } } })
     end
   end
 
