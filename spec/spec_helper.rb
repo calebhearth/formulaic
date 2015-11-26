@@ -40,6 +40,11 @@ module SpecHelper
                 phone: Phone Number
                 terms_of_service: I agree to the Terms of Service
                 url: Website
+          options:
+            user:
+              role:
+                admin: Administrator
+                member: Member
     TRANSLATIONS
     I18n.backend.store_translations(:es, YAML.load(<<-TRANSLATIONS))
       date:

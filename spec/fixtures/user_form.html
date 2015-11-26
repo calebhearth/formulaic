@@ -302,5 +302,13 @@
     </select>
   </div>
   <div class="input boolean required user_terms_of_service"><input name="user[terms_of_service]" type="hidden" value="0"><input class="boolean required" id="user_terms_of_service" name="user[terms_of_service]" type="checkbox" value="1"><label class="boolean required" for="user_terms_of_service"><abbr title="required">*</abbr> I agree to the Terms of Service</label></div>
+  <div class="input select required user_role">
+    <label class="select required" for="user_role"><abbr title="required">*</abbr> Role</label>
+    <select class="select required" name="user[role]" id="user_role">
+      <option value=""></option>
+      <option selected="selected" value="member">Member</option>
+      <option value="admin">Administrator</option>
+    </select>
+  </div>
   <input name="commit" type="submit" value="Register">
 </form>

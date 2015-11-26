@@ -224,4 +224,24 @@ describe 'Fill in user form' do
 
     expect(page.find('#user_friend_ids_1')).to be_checked
   end
+
+  it 'raises an useful error when option not found for select' do
+    visit 'user_form'
+
+    form = Formulaic::Form.new(:user, :new, role: :unknown)
+
+    expect { form.fill }
+      .to raise_error(
+        Formulaic::OptionForSelectInputNotFound,
+        %[Unable to find option with text matching "unknown".])
+  end
+
+  it 'translate option for select when translation is available' do
+    visit 'user_form'
+
+    form = Formulaic::Form.new(:user, :new, role: :admin)
+    form.fill
+
+    expect(page).to have_select('user_role', selected: 'Administrator')
+  end
 end
