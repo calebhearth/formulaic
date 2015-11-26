@@ -2,9 +2,6 @@ require 'spec_helper'
 require 'pathname'
 
 describe 'Fill in user form' do
-
-  before(:all) { load_translations }
-
   it 'finds and fills text fields' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, :new, name: 'George')
