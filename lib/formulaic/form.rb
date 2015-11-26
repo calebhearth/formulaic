@@ -8,6 +8,7 @@ module Formulaic
       DateTime => Formulaic::Inputs::DateTimeInput,
       Array => Formulaic::Inputs::ArrayInput,
       String => Formulaic::Inputs::StringInput,
+      Symbol => Formulaic::Inputs::StringInput,
       Fixnum => Formulaic::Inputs::StringInput,
       Float => Formulaic::Inputs::StringInput,
       TrueClass => Formulaic::Inputs::BooleanInput,
