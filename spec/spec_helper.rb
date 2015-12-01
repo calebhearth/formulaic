@@ -1,5 +1,7 @@
 require 'formulaic'
 
+Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+
 module SpecHelper
   def input(model, field)
     page.find("##{model}_#{field}")

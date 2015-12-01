@@ -25,12 +25,6 @@ describe Formulaic::Label do
     expect(label(:student, "Course selection")).to eq "Course selection"
   end
 
-  class User
-    def self.human_attribute_name(attribute)
-      attribute.to_s.humanize
-    end
-  end
-
   def label(model_name, attribute, action = :new)
     Formulaic::Label.new(model_name, attribute, action).to_str
   end
