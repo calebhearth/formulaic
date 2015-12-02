@@ -18,7 +18,8 @@ module SpecHelper
               end
   end
 
-  def load_translations
+  def reset_and_load_translations
+    I18n.reload!
     I18n.backend.store_translations(:en, YAML.load(<<-TRANSLATIONS))
         helpers:
           submit:
@@ -63,6 +64,10 @@ module SpecHelper
   end
 end
 
-RSpec.configure do |c|
-  c.include SpecHelper
+RSpec.configure do |config|
+  config.include SpecHelper
+
+  config.before(:each) do
+    reset_and_load_translations
+  end
 end
