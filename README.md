@@ -122,7 +122,7 @@ You may have attributes included in your `User` factory that don’t pertain to
 sign up:
 
 ```ruby
-fill_form(:user, attributes_for(:user).slice(sign_up_attributes))
+fill_form(:user, attributes_for(:user).slice(*sign_up_attributes))
 
 # ...
 def sign_up_attributes
