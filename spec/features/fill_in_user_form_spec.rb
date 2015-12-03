@@ -11,6 +11,14 @@ describe 'Fill in user form' do
     expect(input(:user, :name).value).to eq 'George'
   end
 
+  it 'finds and fills text fields with symbol values' do
+    visit 'user_form'
+    form = Formulaic::Form.new(:user, :new, name: :George)
+    form.fill
+
+    expect(input(:user, :name).value).to eq 'George'
+  end
+
   it 'finds and fills a password field' do
     visit 'user_form'
     form = Formulaic::Form.new(:user, :new, password: 'supersecr3t')
