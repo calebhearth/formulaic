@@ -15,7 +15,7 @@ module Formulaic
 
       def has_option_in_select?(option, select)
         element = find(:select, select)
-        unless element.has_selector? :option, option, wait: Formulaic.default_wait_time
+        if ! element.has_selector?(:option, option, wait: Formulaic.default_wait_time)
           raise Formulaic::OptionForSelectInputNotFound.new(%[Unable to find option with text matching "#{option}".])
         end
         true
