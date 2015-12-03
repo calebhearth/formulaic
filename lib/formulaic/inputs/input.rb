@@ -7,7 +7,7 @@ module Formulaic
       include Capybara::DSL
 
       def initialize(label, value)
-        @label = label.to_str
+        @label = label
         @value = value
       end
 
