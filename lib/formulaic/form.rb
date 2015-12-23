@@ -18,6 +18,7 @@ module Formulaic
 
     def initialize(model_name, action, attributes)
       @action = action
+      @role = extract_presenter(attributes)
       @inputs = build_inputs(model_name, attributes)
     end
 
@@ -27,7 +28,7 @@ module Formulaic
 
     private
 
-    attr_reader :model_name, :inputs, :action
+    attr_reader :model_name, :inputs, :action, :role
 
     def build_inputs(model_name, attributes)
       attributes.map do |field, value|
@@ -36,7 +37,7 @@ module Formulaic
     end
 
     def build_input(model_name, field, value)
-      label = Label.new(model_name, field, action)
+      label = Label.new(model_name, field, action, role)
       input_class_for(value).new(label, value)
     end
 
@@ -44,6 +45,10 @@ module Formulaic
       ATTRIBUTE_INPUT_MAP.fetch(value.class) do
         raise InvalidAttributeTypeError.new("Formulaic does not know how to fill in a #{value.class} value")
       end
+    end
+
+    def extract_presenter(attributes)
+      attributes.delete(:user_role)
     end
 
     class InvalidAttributeTypeError < StandardError; end
