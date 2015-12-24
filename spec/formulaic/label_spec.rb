@@ -35,10 +35,6 @@ describe Formulaic::Label do
     end
   end
 
-  it "should leave cases alone" do
-    expect(label(:user, "Work URL")).to eq "Work URL"
-  end
-
   def label(model_name, attribute, action = :new)
     Formulaic::Label.new(model_name, attribute, action).to_str
   end
