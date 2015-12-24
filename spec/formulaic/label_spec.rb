@@ -8,22 +8,28 @@ describe Formulaic::Label do
   end
 
   context "attribute is not a string" do
-    context "human_attribute_name is available" do
-      it "returns human_attribute_name" do
-        expect(label(:user, :first_name)).to eq "First name"
+    context "translation is available" do
+      it "uses a translation" do
+        create_translation_for({ user: { name: "First name"}})
+
+        expect(label(:user, :name)).to eq("First name")
       end
     end
 
-    context "translation is available" do
-      it "uses a translation" do
-        I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: "Translated" } } } } )
+    context "translation is not available" do
+      context "human_attribute_name is available" do
+        it "returns human_attribute_name" do
+          create_translation_for({ user: { name: nil}})
 
-        expect(label(:user, :name)).to eq("Translated")
+          expect(label(:user, :name)).to eq "Name"
+        end
       end
 
       context "model is not found" do
         it "uses the attribute as a string" do
-          expect(label(:student, "Course selection")).to eq "Course selection"
+          create_translation_for({ student: nil })
+
+          expect(label(:student, "Course_selection")).to eq "Course_selection"
         end
       end
     end
@@ -35,5 +41,11 @@ describe Formulaic::Label do
 
   def label(model_name, attribute, action = :new)
     Formulaic::Label.new(model_name, attribute, action).to_str
+  end
+
+  def create_translation_for(label)
+    I18n.backend.store_translations(
+      :en, { simple_form: { labels: label } }
+    )
   end
 end
