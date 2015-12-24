@@ -18,6 +18,7 @@ module Formulaic
 
     def initialize(model_name, action, attributes)
       @action = action
+      @presenter = attributes.delete(:presenter)
       @inputs = build_inputs(model_name, attributes)
     end
 
@@ -27,7 +28,7 @@ module Formulaic
 
     private
 
-    attr_reader :model_name, :inputs, :action
+    attr_reader :model_name, :inputs, :action, :presenter
 
     def build_inputs(model_name, attributes)
       attributes.map do |field, value|
@@ -36,7 +37,7 @@ module Formulaic
     end
 
     def build_input(model_name, field, value)
-      label = Label.new(model_name, field, action)
+      label = Label.new(model_name, field, action, presenter)
       input_class_for(value).new(label, value)
     end
 

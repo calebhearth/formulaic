@@ -9,10 +9,20 @@ describe Formulaic::Label do
 
   context "attribute is not a string" do
     context "translation is available" do
-      it "uses a translation" do
-        create_translation_for({ user: { name: "First name"}})
+      context "no presenter provided" do
+        it "uses a translation" do
+          create_translation_for({ user: { name: "First name"}})
 
-        expect(label(:user, :name)).to eq("First name")
+          expect(label(:user, :name)).to eq("First name")
+        end
+      end
+
+      context "presenter provided" do
+        it "uses a translation" do
+          create_translation_for({ user: { name: { presenter: "First name"}}})
+
+          expect(label(:user, :name, presenter: :presenter)).to eq("First name")
+        end
       end
     end
 
@@ -35,8 +45,8 @@ describe Formulaic::Label do
     end
   end
 
-  def label(model_name, attribute, action = :new)
-    Formulaic::Label.new(model_name, attribute, action).to_str
+  def label(model_name, attribute, action = :new, presenter: :nil)
+    Formulaic::Label.new(model_name, attribute, action, presenter).to_str
   end
 
   def create_translation_for(label)
