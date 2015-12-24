@@ -1,28 +1,38 @@
 require "spec_helper"
 
 describe Formulaic::Label do
-  it "returns the string if there are no translations and it can not human_attribute_name the class" do
-    expect(label(nil, "My label")).to eq "My label"
+  context "attribute is a string" do
+    it "returns the string" do
+      expect(label(nil, "My label")).to eq "My label"
+    end
   end
 
-  it "returns human_attribute_name if available" do
-    expect(label(:user, :first_name)).to eq "First name"
-  end
+  context "attribute is not a string" do
+    context "human_attribute_name is available" do
+      it "returns human_attribute_name" do
+        expect(label(:user, :first_name)).to eq "First name"
+      end
+    end
 
-  it "uses a translation if available" do
-    I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: "Translated" } } } } )
+    context "translation is available" do
+      it "uses a translation" do
+        I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: "Translated" } } } } )
 
-    expect(label(:user, :name)).to eq("Translated")
+        expect(label(:user, :name)).to eq("Translated")
 
-    I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: nil } } } } )
+        I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: nil } } } } )
+      end
+
+      context "model is not found" do
+        it "uses the attribute as a string" do
+          expect(label(:student, "Course selection")).to eq "Course selection"
+        end
+      end
+    end
   end
 
   it "should leave cases alone" do
     expect(label(:user, "Work URL")).to eq "Work URL"
-  end
-
-  it "uses the attribute when the model is not found" do
-    expect(label(:student, "Course selection")).to eq "Course selection"
   end
 
   def label(model_name, attribute, action = :new)
