@@ -19,8 +19,6 @@ describe Formulaic::Label do
         I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: "Translated" } } } } )
 
         expect(label(:user, :name)).to eq("Translated")
-
-        I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: nil } } } } )
       end
 
       context "model is not found" do
