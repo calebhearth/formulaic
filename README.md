@@ -176,8 +176,13 @@ Formulaic.default_wait_time = 5
 
 ## About
 
-Formulaic is maintained by [Caleb Thompson](http://github.com/calebthompson).
-It was written by [thoughtbot](http://thoughtbot.com) with the help of our
-[contributors](http://github.com/thoughtbot/formulaic/contributors).
+Formulaic is maintained by [Caleb Thompson][caleb]
+and thoughtbot's [Austin Ruby on Rails development team][team],
+with the help of community [contributors].
+Thank you!
+
+[caleb]: http://github.com/calebthompson
+[team]: https://thoughtbot.com/austin?utm_source=github
+[contributors]: http://github.com/thoughtbot/formulaic/contributors
 
 [![Ralph](http://thoughtbot.com/assets/thoughtbot-logo.png)](http://thoughtbot.com)
