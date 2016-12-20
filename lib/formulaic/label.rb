@@ -1,11 +1,12 @@
 module Formulaic
   class Label
-    attr_reader :model_name, :attribute, :action
+    attr_reader :model_name, :attribute, :action, :role
 
-    def initialize(model_name, attribute, action)
+    def initialize(model_name, attribute, action, role)
       @model_name = model_name
       @attribute = attribute
       @action = action
+      @role = role
     end
 
     def to_str
@@ -34,6 +35,7 @@ module Formulaic
 
     def lookup_paths
       [
+        :"#{model_name}.#{attribute}.#{role}",
         :"#{model_name}.#{action}.#{attribute}",
         :"#{model_name}.#{attribute}",
         :"defaults.#{action}.#{attribute}",

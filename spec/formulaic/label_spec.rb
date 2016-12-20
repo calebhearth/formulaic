@@ -25,7 +25,7 @@ describe Formulaic::Label do
     expect(label(:student, "Course selection")).to eq "Course selection"
   end
 
-  def label(model_name, attribute, action = :new)
-    Formulaic::Label.new(model_name, attribute, action).to_str
+  def label(model_name, attribute, action = :new, role = :as_patient)
+    Formulaic::Label.new(model_name, attribute, action, role).to_str
   end
 end
