@@ -9,7 +9,7 @@ module Formulaic
       Array => Formulaic::Inputs::ArrayInput,
       String => Formulaic::Inputs::StringInput,
       Symbol => Formulaic::Inputs::StringInput,
-      Fixnum => Formulaic::Inputs::StringInput,
+      1.class => Formulaic::Inputs::StringInput,
       Float => Formulaic::Inputs::StringInput,
       TrueClass => Formulaic::Inputs::BooleanInput,
       FalseClass => Formulaic::Inputs::BooleanInput,
