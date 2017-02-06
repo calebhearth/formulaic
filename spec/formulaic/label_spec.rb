@@ -25,6 +25,10 @@ describe Formulaic::Label do
     expect(label(:student, "Course selection")).to eq "Course selection"
   end
 
+  it "humanizes attribute if no translation is found and human_attribute_name is not available" do
+    expect(label(:student, :course_selection)).to eq "Course selection"
+  end
+
   def label(model_name, attribute, action = :new)
     Formulaic::Label.new(model_name, attribute, action).to_str
   end

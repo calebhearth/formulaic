@@ -12,7 +12,7 @@ module Formulaic
       if attribute.is_a?(String)
         attribute
       else
-        translate || human_attribute_name || attribute.to_s
+        translate || human_attribute_name || attribute.to_s.humanize
       end
     end
     alias_method :to_s, :to_str
