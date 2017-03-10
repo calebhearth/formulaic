@@ -185,4 +185,4 @@ Thank you!
 [team]: https://thoughtbot.com/austin?utm_source=github
 [contributors]: http://github.com/thoughtbot/formulaic/contributors
 
-[![Ralph](http://thoughtbot.com/assets/thoughtbot-logo.png)](http://thoughtbot.com)
+[![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)](https://thoughtbot.com/)
