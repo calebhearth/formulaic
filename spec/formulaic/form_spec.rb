@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 describe Formulaic::Form do
-  it 'throws an error if it does not know how to fill an attribute type' do
-    expect { Formulaic::Form.new(nil, nil, { invalid: nil }) }.to raise_error(Formulaic::Form::InvalidAttributeTypeError)
+  context "attribute is invalid type" do
+    it "throws an error" do
+      invalid_attribute_error = Formulaic::Form::InvalidAttributeTypeError
+
+      expect{ formulaic_request }.to raise_error(invalid_attribute_error)
+    end
+
+    def formulaic_request
+      Formulaic::Form.new(nil, nil, { invalid: nil })
+    end
   end
 end
