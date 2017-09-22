@@ -11,8 +11,7 @@ describe Formulaic::Label do
 
   context "when simple_form translations are available" do
     it "uses simple_form translation" do
-      I18n.reload!
-      I18n.backend.store_translations(:en, {
+      store_translations(
         simple_form: {
           labels: {
             user: {
@@ -20,7 +19,7 @@ describe Formulaic::Label do
             },
           },
         },
-      })
+      )
 
       expect(label(:user, :name)).to eq("Translated")
     end
@@ -28,8 +27,7 @@ describe Formulaic::Label do
 
   context "when helpers.label.<model> translations are available" do
     it "uses helpers.label translation" do
-      I18n.reload!
-      I18n.backend.store_translations(:en, {
+      store_translations(
         helpers: {
           label: {
             user: {
@@ -37,7 +35,7 @@ describe Formulaic::Label do
             },
           },
         },
-      })
+      )
 
       expect(label(:user, :name)).to eq("Translated")
     end
@@ -45,14 +43,13 @@ describe Formulaic::Label do
 
   context "when helpers.label.text default translations are available" do
     it "uses helpers.label.text translations" do
-      I18n.reload!
-      I18n.backend.store_translations(:en, {
+      store_translations(
         helpers: {
           label: {
             text: "Default",
           },
         },
-      })
+      )
 
       expect(label(:user, :name)).to eq("Default")
     end
@@ -60,8 +57,7 @@ describe Formulaic::Label do
 
   context "when activerecord.attributes.<model> translations are available" do
     it "uses activerecord.attributes translations" do
-      I18n.reload!
-      I18n.backend.store_translations(:en, {
+      store_translations(
         activerecord: {
           attributes: {
             user: {
@@ -69,7 +65,7 @@ describe Formulaic::Label do
             },
           },
         },
-      })
+      )
 
       expect(label(:user, :name)).to eq("Translated")
     end
@@ -85,6 +81,11 @@ describe Formulaic::Label do
 
   it "humanizes attribute if no translation is found and human_attribute_name is not available" do
     expect(label(:student, :course_selection)).to eq "Course selection"
+  end
+
+  def store_translations(translations)
+      I18n.reload!
+      I18n.backend.store_translations(:en, translations)
   end
 
   def label(model_name, attribute, action = :new)
