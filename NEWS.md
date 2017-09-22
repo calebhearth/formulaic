@@ -1,3 +1,13 @@
+master
+------
+
+* Add Rails `helpers.label` and `activerecord.attributes` fallback scopes for
+  label string internationalization [#67].
+
+  *Sean Doyle*
+
+[#67]: https://github.com/thoughtbot/formulaic/pull/67
+
 v0.1.1
 ------
 

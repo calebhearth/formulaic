@@ -20,7 +20,7 @@ module Formulaic
     private
 
     def translate
-      I18n.t(lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths).presence
+      I18n.t(lookup_paths.first, default: lookup_paths).presence
     end
 
     def human_attribute_name
@@ -34,10 +34,13 @@ module Formulaic
 
     def lookup_paths
       [
-        :"#{model_name}.#{action}.#{attribute}",
-        :"#{model_name}.#{attribute}",
-        :"defaults.#{action}.#{attribute}",
-        :"defaults.#{attribute}",
+        :"simple_form.labels.#{model_name}.#{action}.#{attribute}",
+        :"simple_form.labels.#{model_name}.#{attribute}",
+        :"simple_form.labels.defaults.#{action}.#{attribute}",
+        :"simple_form.labels.defaults.#{attribute}",
+        :"activerecord.attributes.#{model_name}.#{attribute}",
+        :"helpers.label.#{model_name}.#{attribute}",
+        :"helpers.label.text",
         '',
       ]
     end
