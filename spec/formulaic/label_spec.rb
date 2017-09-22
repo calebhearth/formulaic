@@ -9,24 +9,113 @@ describe Formulaic::Label do
     expect(label(:user, :first_name)).to eq "First name"
   end
 
-  it "uses a translation if available" do
-    I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: "Translated" } } } } )
+  context "when simple_form translations are available" do
+    it "uses simple_form translation" do
+      store_translations(
+        simple_form: {
+          labels: {
+            user: {
+              name: "Translated"
+            },
+          },
+        },
+      )
 
-    expect(label(:user, :name)).to eq("Translated")
+      translated = label(:user, :name)
 
-    I18n.backend.store_translations(:en, { simple_form: { labels: { user: { name: nil } } } } )
+      expect(translated).to eq("Translated")
+    end
+
+    it "takes precedent over custom translation scopes" do
+      Formulaic.configure do |config|
+        config.translation_scopes << "helpers.label"
+      end
+      simple_form_label = "Translated With Simple Form"
+      rails_label = "Translated with Rails"
+      store_translations(
+        helpers: {
+          label: {
+            user: {
+              name: rails_label,
+            },
+          },
+        },
+        simple_form: {
+          labels: {
+            user: {
+              name: simple_form_label,
+            },
+          },
+        },
+      )
+
+      translated = label(:user, :name)
+
+      expect(translated).to eq(simple_form_label)
+    end
+  end
+
+  context "when additional translation scopes are available" do
+    it "supports Rails conventions" do
+      Formulaic.configure do |config|
+        config.translation_scopes << "helpers.label"
+      end
+      store_translations(
+        helpers: {
+          label: {
+            user: {
+              name: "Translated"
+            },
+          },
+        },
+      )
+
+      translated = label(:user, :name)
+
+      expect(translated).to eq("Translated")
+    end
+
+    it "supports ActiveRecord conventions" do
+      Formulaic.configure do |config|
+        config.translation_scopes << "activerecord.attributes"
+      end
+      store_translations(
+        activerecord: {
+          attributes: {
+            user: {
+              name: "Translated"
+            },
+          },
+        },
+      )
+
+      translated = label(:user, :name)
+
+      expect(translated).to eq("Translated")
+    end
   end
 
   it "should leave cases alone" do
-    expect(label(:user, "Work URL")).to eq "Work URL"
+    translated = label(:user, "Work URL")
+
+    expect(translated).to eq "Work URL"
   end
 
   it "uses the attribute when the model is not found" do
-    expect(label(:student, "Course selection")).to eq "Course selection"
+    translated = label(:student, "Course selection")
+
+    expect(translated).to eq "Course selection"
   end
 
   it "humanizes attribute if no translation is found and human_attribute_name is not available" do
-    expect(label(:student, :course_selection)).to eq "Course selection"
+    translated = label(:student, :course_selection)
+
+    expect(translated).to eq "Course selection"
+  end
+
+  def store_translations(translations)
+      I18n.reload!
+      I18n.backend.store_translations(:en, translations)
   end
 
   def label(model_name, attribute, action = :new)

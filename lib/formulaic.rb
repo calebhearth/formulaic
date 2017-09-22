@@ -8,7 +8,7 @@ require 'formulaic/dsl'
 
 module Formulaic
   class << self
-    attr_accessor :default_wait_time
+    attr_accessor :default_wait_time, :translation_scopes
 
     def configure
       yield self
@@ -18,4 +18,5 @@ end
 
 Formulaic.configure do |config|
   config.default_wait_time = 0
+  config.translation_scopes = Formulaic::Label.translation_scopes
 end

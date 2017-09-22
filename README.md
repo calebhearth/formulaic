@@ -147,6 +147,18 @@ Formulaic assumes your forms don't use AJAX, setting the wait time to 0. This ca
 Formulaic.default_wait_time = 5
 ```
 
+### Additional Translation Lookup Paths
+
+If you'd like to add additional translation lookup paths, append them through
+configuration:
+
+```rb
+Formulaic.configure do |config|
+  config.translation_scopes << "helpers.label"
+  config.translation_scopes << "activerecord.attributes"
+end
+```
+
 ## Known Limitations
 
 * Formulaic currently supports the following mappings from the `#class` of the

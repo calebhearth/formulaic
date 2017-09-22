@@ -2,6 +2,13 @@ module Formulaic
   class Label
     attr_reader :model_name, :attribute, :action
 
+    def self.translation_scopes
+      Set.new([
+        [:simple_form, :labels],
+        [:simple_form, :labels, :defaults],
+      ])
+    end
+
     def initialize(model_name, attribute, action)
       @model_name = model_name
       @attribute = attribute
@@ -20,7 +27,21 @@ module Formulaic
     private
 
     def translate
-      I18n.t(lookup_paths.first, scope: :'simple_form.labels', default: lookup_paths).presence
+      translations.detect(&:present?)
+    end
+
+    def translations
+      Formulaic.translation_scopes.map do |scope|
+        lookup_translation([model_name, action, attribute], scope: scope) ||
+        lookup_translation([model_name, attribute], scope: scope) ||
+        lookup_translation(attribute, scope: scope)
+      end
+    end
+
+    def lookup_translation(keys, scope:)
+      key = Array(keys).join(".")
+
+      I18n.t(key, scope: scope, default: nil).presence
     end
 
     def human_attribute_name
@@ -33,13 +54,7 @@ module Formulaic
     end
 
     def lookup_paths
-      [
-        :"#{model_name}.#{action}.#{attribute}",
-        :"#{model_name}.#{attribute}",
-        :"defaults.#{action}.#{attribute}",
-        :"defaults.#{attribute}",
-        '',
-      ]
+      Formulaic.translation_scopes
     end
 
     def class_exists?(class_name)

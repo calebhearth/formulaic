@@ -1,3 +1,10 @@
+master
+------
+
+* Add support for additional translation lookup paths for label string
+  internationalization (like Rails `helpers.label` and `activerecord.attributes`
+  scopes)
+
 v0.1.1
 ------
 
