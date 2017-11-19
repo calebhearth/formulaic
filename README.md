@@ -112,7 +112,7 @@ class ActionDispatch::IntegrationTest
 end
 ```
 
-### Integration with [FactoryGirl](https://github.com/thoughtbot/factory_girl)
+### Integration with [Factory Bot](https://github.com/thoughtbot/factory_bot)
 
 ```ruby
 fill_form(:user, attributes_for(:user))
