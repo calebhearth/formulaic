@@ -19,29 +19,26 @@ module Formulaic
       if attribute.is_a?(String)
         attribute
       else
-        translate || human_attribute_name || attribute.to_s.humanize
+        translated || human_attribute_name || attribute.to_s.humanize
       end
     end
     alias_method :to_s, :to_str
 
     private
 
-    def translate
-      translations.detect(&:present?)
-    end
-
-    def translations
-      Formulaic.translation_scopes.map do |scope|
-        lookup_translation([model_name, action, attribute], scope: scope) ||
-        lookup_translation([model_name, attribute], scope: scope) ||
-        lookup_translation(attribute, scope: scope)
+    def translated
+      Formulaic.translation_scopes.reduce(nil) do |translation, scope|
+        translation ||
+          translate([model_name, action, attribute], scope) ||
+          translate([model_name, attribute], scope) ||
+          translate(attribute, scope)
       end
     end
 
-    def lookup_translation(keys, scope:)
+    def translate(keys, scope)
       key = Array(keys).join(".")
 
-      I18n.t(key, scope: scope, default: nil).presence
+      I18n.translate(key, scope: scope, default: nil).presence
     end
 
     def human_attribute_name
@@ -51,10 +48,6 @@ module Formulaic
           model_class.human_attribute_name(attribute.to_s)
         end
       end
-    end
-
-    def lookup_paths
-      Formulaic.translation_scopes
     end
 
     def class_exists?(class_name)
