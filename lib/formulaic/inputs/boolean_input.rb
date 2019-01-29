@@ -3,9 +3,9 @@ module Formulaic
     class BooleanInput < Input
       def fill
         if value
-          check(label)
+          check(label.to_str)
         else
-          uncheck(label)
+          uncheck(label.to_str)
         end
       end
     end

@@ -2,19 +2,19 @@ module Formulaic
   module Inputs
     class StringInput < Input
       def fill
-        if page.has_selector?(:fillable_field, label, wait: Formulaic.default_wait_time)
-          fill_in(label, with: value)
-        elsif page.has_selector?(:radio_button, label, wait: Formulaic.default_wait_time)
+        if page.has_selector?(:fillable_field, label.to_str, wait: Formulaic.default_wait_time)
+          fill_in(label.to_str, with: value)
+        elsif page.has_selector?(:radio_button, label.to_str, wait: Formulaic.default_wait_time)
           choose(value)
-        elsif has_option_in_select?(translate_option(value), label)
-          select(translate_option(value), from: label)
+        elsif has_option_in_select?(translate_option(value), label.to_str)
+          select(translate_option(value), from: label.to_str)
         else
           raise Formulaic::InputNotFound.new(%[Unable to find input "#{label}".])
         end
       end
 
       def has_option_in_select?(option, select)
-        element = find(:select, select)
+        element = find(:select, select.to_str)
         if ! element.has_selector?(:option, option, wait: Formulaic.default_wait_time)
           raise Formulaic::OptionForSelectInputNotFound.new(%[Unable to find option with text matching "#{option}".])
         end
