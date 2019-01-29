@@ -21,7 +21,7 @@ module Formulaic
       end
 
       def has_select?
-        has_field?(label, type: "select")
+        has_field?(label.to_str, type: "select")
       end
 
       def select_is_multiple?
@@ -30,7 +30,7 @@ module Formulaic
       end
 
       def select_element
-        @select_element ||= find_field(label, type: "select")
+        @select_element ||= find_field(label.to_str, type: "select")
       end
     end
   end

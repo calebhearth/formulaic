@@ -1,11 +1,6 @@
 module Formulaic
   module Inputs
     class ArrayInput < Input
-      def initialize(label, value)
-        @label = label
-        @value = value
-      end
-
       def fill
         attempt_to_fill_selects ||
           attempt_to_fill_checkboxes ||
