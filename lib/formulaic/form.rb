@@ -14,6 +14,7 @@ module Formulaic
       TrueClass => Formulaic::Inputs::BooleanInput,
       FalseClass => Formulaic::Inputs::BooleanInput,
       File => Formulaic::Inputs::FileInput,
+      Rack::Multipart::UploadedFile => Formulaic::Inputs::FileInput
     }.freeze
 
     def initialize(model_name, action, attributes)

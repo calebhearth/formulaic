@@ -192,14 +192,28 @@ describe 'Fill in user form' do
     expect(page).to have_select('user_awesome', selected: 'Yes')
   end
 
-  it 'attaches a file to a file field' do
-    visit 'user_form'
-    file = File.open('spec/fixtures/file.txt')
-    form = Formulaic::Form.new(:user, :new, avatar: file)
+  context 'when File is an instance of File class' do
+    it 'attaches a file to a file field' do
+      visit 'user_form'
+      file = File.open('spec/fixtures/file.txt')
+      form = Formulaic::Form.new(:user, :new, avatar: file)
 
-    form.fill
+      form.fill
 
-    expect(input(:user, :avatar).value).to eq file.path
+      expect(input(:user, :avatar).value).to eq file.path
+    end
+  end
+
+  context 'when File is an instance of Rack::Multipart::UploadedFile class' do
+    it 'attaches a file to a file field' do
+      visit 'user_form'
+      file = Rack::Multipart::UploadedFile.new('spec/fixtures/file.txt')
+      form = Formulaic::Form.new(:user, :new, avatar: file)
+
+      form.fill
+
+      expect(input(:user, :avatar).value).to eq file.path
+    end
   end
 
   it 'finds and fills a date field regardless of select box order' do
