@@ -133,9 +133,16 @@ end
 ### Integration with [Capybara::TestHelper](https://github.com/ElMassimo/capybara_test_helpers)
 
 ```ruby
-# test_helpers/base_test_helper.rb
 class BaseTestHelper < Capybara::TestHelper
   include Formulaic::Dsl
+end
+```
+
+or alternatively delegate the needed methods:
+
+```ruby
+class FormTestHelper < BaseTestHelper
+  delegate_to_test_context(:fill_form, :input, :submit, :fill_form_and_submit)
 end
 ```
 
