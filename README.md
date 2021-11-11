@@ -130,6 +130,22 @@ def sign_up_attributes
 end
 ```
 
+### Integration with [Capybara::TestHelper](https://github.com/ElMassimo/capybara_test_helpers)
+
+```ruby
+class BaseTestHelper < Capybara::TestHelper
+  include Formulaic::Dsl
+end
+```
+
+or alternatively delegate the needed methods:
+
+```ruby
+class FormTestHelper < BaseTestHelper
+  delegate_to_test_context(:fill_form, :input, :submit, :fill_form_and_submit)
+end
+```
+
 ## Assumptions
 
 Formulaic relies pretty heavily on the assumption that your application is using
