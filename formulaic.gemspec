@@ -6,15 +6,15 @@ require 'formulaic/version'
 Gem::Specification.new do |spec|
   spec.name          = 'formulaic'
   spec.version       = Formulaic::VERSION
-  spec.authors       = ['Caleb Thompson']
-  spec.email         = ['caleb@calebthompson.io']
+  spec.authors       = ['Caleb Hearth']
+  spec.email         = ['caleb@calebhearth.com']
   spec.summary       = 'Simplify form filling with Capybara'
   spec.description   = <<-DESCRIPTION.sub(/^ +/, '')
     Removes the tedium of formulaic form filling with Capybara by allowing you
     to specify a hash of attributes to be input rather than procedurally calling
     Capybara’s DSL methods.
   DESCRIPTION
-  spec.homepage      = 'https://github.com/thoughtbot/formulaic'
+  spec.homepage      = 'https://github.com/calebhearth/formulaic'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)

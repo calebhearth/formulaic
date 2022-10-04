@@ -1,7 +1,7 @@
 # Formulaic
 
-[![Build Status](https://travis-ci.org/thoughtbot/formulaic.png?branch=master)](https://travis-ci.org/thoughtbot/formulaic)
-[![Code Climate](https://codeclimate.com/github/thoughtbot/formulaic.png)](https://codeclimate.com/github/thoughtbot/formulaic)
+[![Build Status](https://travis-ci.org/calebhearth/formulaic.png?branch=master)](https://travis-ci.org/calebhearth/formulaic)
+[![Code Climate](https://codeclimate.com/github/calebhearth/formulaic.png)](https://codeclimate.com/github/calebhearth/formulaic)
 
 Remove the tedium of formulaic form filling with Capybara.
 
@@ -192,13 +192,8 @@ Formulaic.default_wait_time = 5
 
 ## About
 
-Formulaic is maintained by [Caleb Thompson][caleb]
-and thoughtbot's [Austin Ruby on Rails development team][team],
-with the help of community [contributors].
-Thank you!
+Formulaic is maintained by [Caleb Hearth][caleb] and formerly thoughtbot with
+the help of community [contributors]. Thank you!
 
-[caleb]: http://github.com/calebthompson
-[team]: https://thoughtbot.com/austin?utm_source=github
-[contributors]: http://github.com/thoughtbot/formulaic/contributors
-
-[![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)](https://thoughtbot.com/)
+[caleb]: http://github.com/calebhearth
+[contributors]: http://github.com/thoughtbot/calebhearth/contributors
