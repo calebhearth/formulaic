@@ -21,6 +21,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^spec/})
   spec.require_paths = ['lib']
 
+  spec.metadata = {
+    "funding-uri" => "https://github.com/sponsors/calebhearth"
+  }
+
   spec.add_dependency 'capybara'
   spec.add_dependency 'i18n'
   spec.add_dependency 'activesupport'
